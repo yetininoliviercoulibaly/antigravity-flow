@@ -24,6 +24,10 @@ Commands:
             Options:
             --config <path>   Run initialization from a configuration file (skip prompts)
 
+  templates Manage and customize templates.
+            - list    : Show all available templates.
+            - update  : Eject and edit a template (local override).
+
   guide     Show this help message.
 
 Workflows Generated:

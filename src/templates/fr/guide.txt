@@ -23,6 +23,10 @@ Commandes :
             Options :
             --config <path>   Lance l'initialisation depuis un fichier de config (sans prompt)
 
+  templates Gérer et personnaliser les templates.
+            - list    : Affiche tous les templates disponibles.
+            - update  : Éjecte et édite un template (surcharge locale).
+
   guide     Affiche ce message d'aide.
 
 Workflows Générés :

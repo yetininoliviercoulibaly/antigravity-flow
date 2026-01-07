@@ -1,5 +1,7 @@
 # 🚀 Antigravity Workflow CLI
 
+[![NPM Version](https://img.shields.io/npm/v/antigravity-flow)](https://www.npmjs.com/package/antigravity-flow)
+
 **Enforce strict, agentic workflows in your development projects.**
 
 Antigravity Flow (`ag-flow`) is a CLI tool originally built to prepare projects for **Google Antigravity**. It has since evolved into a **universal context generator** that standardizes development workflows for all AI-native IDEs, including **Cursor**, **Windsurf**, **Gemini Code Assist**, and **GitHub Copilot**.
@@ -28,6 +30,7 @@ It generates context-aware rules, workflows, and CI/CD pipelines tailored to you
   - **CI/CD**: GitHub Actions pipelines.
   - **Dockerfile**: Production-ready, multi-stage builds.
   - **.gitignore**: Optimized rules for your stack.
+  - **Customizable**: Use `ag-flow templates` to eject and modify any internal template.
 - **💡 Intelligent Discovery**: Auto-detects your tech stack to pre-fill prompts.
 - **💾 Configuration Persistence**: Saves your choices to `.agent/antigravity.json`.
 - **📦 Monorepo Support**: Turborepo, Nx, Lerna, pnpm/yarn workspaces.
@@ -59,6 +62,20 @@ ag-flow guide
 # or for French:
 ag-flow guide fr
 ```
+
+### Template Customization (NEW)
+
+You can view and customize any internal template (prompts, rules, Dockerfiles):
+
+```bash
+# List all available templates
+ag-flow templates list
+
+# Eject and edit a template (opens system editor)
+ag-flow templates update docker/django.Dockerfile.ejs
+```
+
+The CLI will automatically prioritize your local templates in `.agent/templates/`.
 
 ### Interactive Prompts
 
