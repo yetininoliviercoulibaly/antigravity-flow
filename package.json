@@ -1,6 +1,6 @@
 {
   "name": "antigravity-flow",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Universal AI Context Generator & Workflow CLI for Cursor, Windsurf, and Antigravity.",
   "main": "dist/src/core/index.js",
   "bin": {

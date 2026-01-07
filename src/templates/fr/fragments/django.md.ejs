@@ -1,0 +1,12 @@
+## Règles Spécifiques Django
+
+1.  **Structure du Projet**: Organisez les apps par domaine/fonctionnalité, pas par type.
+2.  **Modèles (Models)**: Gardez les modèles légers, utilisez des managers pour les requêtes complexes.
+3.  **Vues (Views)**: Préférez les vues basées sur des classes (CBV) pour la réutilisabilité.
+4.  **Formulaires**: Utilisez les formulaires Django pour la validation, ModelForms pour le CRUD.
+5.  **Migrations**: Révisez toujours les migrations générées avant de les appliquer.
+6.  **Signaux**: Évitez les signaux pour la logique métier, utilisez des appels de service explicites.
+7.  **Templates**: Minimisez la logique dans les templates, utilisez des template tags.
+8.  **Configuration**: Utilisez django-environ ou similaire pour la configuration de l'environnement.
+9.  **Sécurité**: Activez CSRF, utilisez le middleware de sécurité de Django.
+10. **Tests**: Utilisez pytest-django pour les tests, factory_boy pour les fixtures.

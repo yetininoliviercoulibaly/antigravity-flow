@@ -1,0 +1,10 @@
+## Règles Spécifiques Next.js
+
+1.  **App Router**: Utilisez le App Router (app/) pour les nouveaux projets.
+2.  **Server Components**: Utilisez les Server Components par défaut. Ajoutez `'use client'` seulement si nécessaire.
+3.  **Récupération de Données**: Utilisez `fetch()` avec stratégies de cache, pas `getServerSideProps`.
+4.  **Routes API**: Utilisez les Route Handlers (app/api/) pour la logique côté serveur.
+5.  **Métadonnées**: Utilisez l'API Metadata pour le SEO.
+6.  **Optimisation Image**: Utilisez toujours `next/image` pour les images.
+7.  **Variables d'Environnement**: Utilisez le préfixe `NEXT_PUBLIC_` uniquement pour les variables exposées au client.
+8.  **Middleware**: Utilisez middleware.ts pour l'authentification et les redirections.

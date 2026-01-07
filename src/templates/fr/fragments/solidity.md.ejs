@@ -1,0 +1,20 @@
+## Règles Spécifiques Solidity
+
+1.  **Pragma Version**: Spécifiez toujours une version ou plage Solidity spécifique.
+2.  **Visibilité**: Déclarez explicitement la visibilité des fonctions (public, external, internal, private).
+3.  **Réentrance**: Suivez le modèle CEI (Checks-Effects-Interactions) pour prévenir la réentrance.
+4.  **Optimisation Gas**: Minimisez les écritures en stockage, utilisez `memory` pour les données temporaires.
+5.  **Événements**: Émettez des événements pour tous les changements d'état (pour indexing off-chain).
+6.  **Contrôle d'Accès**: Utilisez Ownable ou AccessControl d'OpenZeppelin.
+7.  **Gestion d'Erreurs**: Utilisez des erreurs personnalisées au lieu de chaînes require pour l'efficacité gas.
+8.  **Tests**: Utilisez Foundry ou Hardhat pour des tests complets.
+9.  **Mise à niveau**: Utilisez des patterns proxy (UUPS, Transparent) si mise à niveau prévue.
+10. **Audit**: Tous les contrats doivent être audités avant déploiement mainnet.
+
+### Checklist Sécurité
+- [ ] Gardes anti-réentrance implémentés
+- [ ] Overflow/underflow entiers gérés (Solidity 0.8+)
+- [ ] Contrôle d'accès vérifié
+- [ ] Risques d'appels externes évalués
+- [ ] Vecteurs d'attaque Flash loan considérés
+- [ ] Mitigations Front-running en place

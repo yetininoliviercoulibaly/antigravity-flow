@@ -1,0 +1,13 @@
+## Règles Spécifiques Spring Boot
+
+1.  **Structure du Projet**: Organisez par fonctionnalité/domaine, pas par couche technique.
+2.  **Injection de Dépendance**: Utilisez l'injection par constructeur, évitez l'injection par champ.
+3.  **Configuration**: Utilisez application.yml avec des profils pour les environnements.
+4.  **Contrôleurs REST**: Utilisez @RestController avec méthodes HTTP et codes statut appropriés.
+5.  **Couche Service**: Gardez la logique métier dans les classes @Service.
+6.  **Repository**: Utilisez les repositories Spring Data JPA, requêtes personnalisées dans @Query.
+7.  **Validation**: Utilisez @Valid et les annotations Bean Validation.
+8.  **Gestion d'Exception**: Utilisez @ControllerAdvice pour la gestion globale des exceptions.
+9.  **Sécurité**: Utilisez Spring Security pour l'authentification et l'autorisation.
+10. **Tests**: Utilisez @SpringBootTest pour l'intégration, @WebMvcTest pour les contrôleurs.
+11. **Actuator**: Activez les endpoints health et metrics pour l'observabilité.
