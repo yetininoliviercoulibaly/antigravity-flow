@@ -76,9 +76,18 @@ export class TemplatesCommand {
 
     // 3. Save to custom location
     if (newContent && newContent.trim() !== '') {
-        await fs.ensureDir(path.dirname(customPath));
-        await fs.writeFile(customPath, newContent);
-        this.logger.success(`Template saved to: ${customPath}`);
+        try {
+            await fs.ensureDir(path.dirname(customPath));
+            await fs.writeFile(customPath, newContent);
+            this.logger.success(`Template saved to: ${customPath}`);
+        } catch (error: any) {
+            if (error.code === 'EACCES' || error.code === 'EPERM') {
+                this.logger.error(`❌ Permission denied. Cannot write to: ${customPath}`);
+                this.logger.error('Please check your file permissions or run with elevated privileges.');
+            } else {
+                this.logger.error(`Failed to save template: ${error.message}`);
+            }
+        }
     } else {
         this.logger.warn('Empty content. Update cancelled.');
     }
