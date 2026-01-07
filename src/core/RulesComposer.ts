@@ -1,5 +1,5 @@
 import { IRulesComposer, ITemplateProvider, ILocalizationService } from './interfaces';
-import { TechStack } from './types';
+import { TechStack, RigorMode } from './types';
 
 export class RulesComposer implements IRulesComposer {
   constructor(
@@ -7,13 +7,21 @@ export class RulesComposer implements IRulesComposer {
     private localizationService: ILocalizationService
   ) {}
 
-  async composeRules(stack: TechStack): Promise<string> {
+  async composeRules(stack: TechStack, rigor: RigorMode): Promise<string> {
     const lang = this.localizationService.getLanguage();
     const fragments: string[] = [];
 
     // Base Rules
     const baseTemplatePath = `${lang}/fragments/base-rules.md.ejs`;
     fragments.push(await this.templateProvider.getTemplate(baseTemplatePath));
+
+    // Rigor Mode Rules
+    const rigorTemplatePath = `${lang}/fragments/rigor/${rigor}.md.ejs`;
+    try {
+        fragments.push(await this.templateProvider.getTemplate(rigorTemplatePath));
+    } catch (e) {
+        console.warn(`Missing rigor fragment: ${rigorTemplatePath}`);
+    }
 
     // Frontend Rules
     if (stack.frontend && stack.frontend !== 'none') {

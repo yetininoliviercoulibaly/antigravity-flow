@@ -1,6 +1,6 @@
 import { WorkflowGenerator } from '../../src/core/WorkflowGenerator';
 import { IFileSystem, ILogger, ITemplateProvider, ILocalizationService, IProjectDetails, IRulesComposer, IContextGenerator } from '../../src/core/interfaces';
-import { TechStack, ArchitectureType, FrontendFramework, BackendFramework, WorkflowRole } from '../../src/core/types';
+import { TechStack, ArchitectureType, FrontendFramework, BackendFramework, WorkflowRole, RigorMode } from '../../src/core/types';
 
 describe('WorkflowGenerator', () => {
     let workflowGenerator: WorkflowGenerator;
@@ -17,6 +17,7 @@ describe('WorkflowGenerator', () => {
         rulesDirectory: '.agent/rules',
         techStack: { frontend: FrontendFramework.REACT, backend: BackendFramework.NESTJS } as TechStack,
         architecture: ArchitectureType.HEXAGONAL,
+        rigor: RigorMode.STRICT,
         projectDescription: 'A test project',
         buildCommand: 'npm run build',
         testCommand: 'npm test'

@@ -1,6 +1,6 @@
 import { RulesComposer } from '../../src/core/RulesComposer';
 import { ITemplateProvider, ILocalizationService } from '../../src/core/interfaces';
-import { TechStack, FrontendFramework, BackendFramework } from '../../src/core/types';
+import { TechStack, FrontendFramework, BackendFramework, RigorMode } from '../../src/core/types';
 
 describe('RulesComposer', () => {
   let rulesComposer: RulesComposer;
@@ -20,18 +20,21 @@ describe('RulesComposer', () => {
     rulesComposer = new RulesComposer(mockTemplateProvider, mockLocalizationService);
   });
 
-  it('should compose rules with base and framework specific fragments', async () => {
+  it('should compose rules with base, rigor and framework specific fragments', async () => {
     const stack: TechStack = {
       frontend: FrontendFramework.REACT,
       backend: BackendFramework.NESTJS,
     };
+    const rigor = RigorMode.STRICT;
 
     const baseTemplate = 'Base Rules\n';
+    const rigorTemplate = 'Strict Rules\n';
     const reactTemplate = 'React Rules\n';
     const nestTemplate = 'NestJS Rules\n';
 
     mockTemplateProvider.getTemplate.mockImplementation(async (path) => {
       if (path.includes('base-rules.md.ejs')) return baseTemplate;
+      if (path.includes('strict.md.ejs')) return rigorTemplate;
       if (path.includes('react.md.ejs')) return reactTemplate;
       if (path.includes('nestjs.md.ejs')) return nestTemplate;
       return '';
@@ -40,13 +43,15 @@ describe('RulesComposer', () => {
     // Mock render to just return the content as is for this test
     mockTemplateProvider.render.mockImplementation((content) => content);
 
-    const result = await rulesComposer.composeRules(stack);
+    const result = await rulesComposer.composeRules(stack, rigor);
 
     expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('base-rules'));
+    expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('strict'));
     expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('react'));
     expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('nestjs'));
     
     expect(result).toContain('Base Rules');
+    expect(result).toContain('Strict Rules');
     expect(result).toContain('React Rules');
     expect(result).toContain('NestJS Rules');
   });
@@ -56,13 +61,15 @@ describe('RulesComposer', () => {
       frontend: FrontendFramework.NONE,
       backend: BackendFramework.NONE,
     };
+    const rigor = RigorMode.PROTOTYPE;
 
     mockTemplateProvider.getTemplate.mockResolvedValue('Rule Content');
     mockTemplateProvider.render.mockImplementation((c) => c);
 
-    await rulesComposer.composeRules(stack);
+    await rulesComposer.composeRules(stack, rigor);
 
     expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('base-rules'));
+    expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('prototype'));
     expect(mockTemplateProvider.getTemplate).not.toHaveBeenCalledWith(expect.stringContaining('react'));
     expect(mockTemplateProvider.getTemplate).not.toHaveBeenCalledWith(expect.stringContaining('node'));
   });

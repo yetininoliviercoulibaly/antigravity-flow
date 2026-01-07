@@ -44,6 +44,11 @@ export enum ArchitectureType {
   FEATURE_SLICED = 'feature-sliced',
 }
 
+export enum RigorMode {
+  STRICT = 'strict',
+  PROTOTYPE = 'prototype',
+}
+
 export interface TechStack {
   frontend: FrontendFramework;
   backend: BackendFramework;

@@ -1,4 +1,4 @@
-import { ArchitectureType, TechStack } from './types';
+import { ArchitectureType, TechStack, RigorMode } from './types';
 
 export interface ILogger {
   info(message: string): void;
@@ -27,7 +27,10 @@ export interface IProjectDetails {
   testCommand: string;
   techStack: TechStack;
   architecture: ArchitectureType;
+  rigor: RigorMode;
   projectDescription?: string;
+  isMonorepo?: boolean;
+  apps?: string[];
 }
 
 export interface ILocalizationService {
@@ -37,7 +40,11 @@ export interface ILocalizationService {
 }
 
 export interface IRulesComposer {
-  composeRules(stack: TechStack): Promise<string>;
+  composeRules(stack: TechStack, rigor: RigorMode): Promise<string>;
+}
+
+export interface IPipelineGenerator {
+  generatePipeline(projectDetails: IProjectDetails): Promise<void>;
 }
 
 export interface IContextGenerator {

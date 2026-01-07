@@ -1,0 +1,28 @@
+# 🧠 Contexte du Projet
+
+## 📝 Description
+<%= projectDescription %>
+
+## 💻 Stack Technique
+- **Frontend**: <%= techStack.frontend %>
+- **Backend**: <%= techStack.backend %>
+
+## 🏗️ Architecture
+**Pattern**: <%= architecture %>
+<% if (isMonorepo) { %>
+**Monorepo**: Oui
+**Apps**:
+<% apps.forEach(function(app) { %>
+- <%= app %>
+<% }); %>
+<% } else { %>
+**Monorepo**: Non
+<% } %>
+
+## 🛠️ Build & Test
+- **Build**: `<%= buildCommand %>`
+- **Test**: `<%= testCommand %>`
+
+---
+*Ce fichier est lu par l'Agent IA pour comprendre le contexte global.*
+Veuillez vous référer à `.agent/rules/coding-standards.md` pour les règles de codage détaillées.

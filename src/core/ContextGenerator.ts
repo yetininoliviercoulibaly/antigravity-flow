@@ -20,6 +20,8 @@ export class ContextGenerator implements IContextGenerator {
       architecture: project.architecture,
       buildCommand: project.buildCommand,
       testCommand: project.testCommand,
+      isMonorepo: project.isMonorepo || false,
+      apps: project.apps || [],
     });
   }
 }

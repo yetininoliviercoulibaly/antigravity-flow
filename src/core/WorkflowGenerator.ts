@@ -67,7 +67,8 @@ export class WorkflowGenerator {
 
     if (role === WorkflowRole.RULES) {
        this.logger.info(`Generaring customized rules for stack: ${project.techStack.frontend}/${project.techStack.backend}...`);
-       content = await this.rulesComposer.composeRules(project.techStack);
+       const rulesContent = await this.rulesComposer.composeRules(project.techStack, project.rigor);
+       content = rulesContent; // Assign rulesContent to content
     } else {
         const lang = this.localizationService.getLanguage();
         const templatePath = path.join(lang, `${role}.md.ejs`);

@@ -1,13 +1,14 @@
 import inquirer from 'inquirer';
 import { WorkflowGenerator } from '../core/WorkflowGenerator';
-import { WorkflowRole, FrontendFramework, BackendFramework, ArchitectureType } from '../core/types';
-import { ILogger, ILocalizationService } from '../core/interfaces';
+import { WorkflowRole, FrontendFramework, BackendFramework, ArchitectureType, RigorMode } from '../core/types';
+import { ILogger, ILocalizationService, IPipelineGenerator } from '../core/interfaces';
 
 export class InitCommand {
   constructor(
     private workflowGenerator: WorkflowGenerator,
     private logger: ILogger,
     private localizationService: ILocalizationService,
+    private pipelineGenerator: IPipelineGenerator,
   ) {}
 
   async execute(): Promise<void> {
@@ -61,6 +62,26 @@ export class InitCommand {
           default: ArchitectureType.HEXAGONAL,
       },
       {
+          type: 'list',
+          name: 'rigor',
+          message: this.localizationService.translate('prompts.rigor') || 'Rigor Level:',
+          choices: Object.values(RigorMode),
+          default: RigorMode.STRICT,
+      },
+      {
+          type: 'confirm',
+          name: 'isMonorepo',
+          message: this.localizationService.translate('prompts.is_monorepo') || 'Is this a Monorepo?',
+          default: false,
+      },
+      {
+          type: 'input',
+          name: 'apps',
+          message: this.localizationService.translate('prompts.monorepo_apps') || 'List your apps (comma separated):',
+          when: (answers) => answers.isMonorepo,
+          filter: (input) => input.split(',').map((s: string) => s.trim()).filter((s: string) => s.length > 0),
+      },
+      {
         type: 'input',
         name: 'buildCommand',
         message: this.localizationService.translate('prompts.build_command'),
@@ -107,11 +128,15 @@ export class InitCommand {
             backend: answers.backend,
         },
         architecture: answers.architecture,
+        rigor: answers.rigor,
         projectDescription: answers.projectDescription,
+        isMonorepo: answers.isMonorepo,
+        apps: answers.apps,
       };
 
       await this.workflowGenerator.generateWorkflows(projectDetails, answers.roles);
       await this.workflowGenerator.generateProjectContext(projectDetails);
+      await this.pipelineGenerator.generatePipeline(projectDetails);
 
     } catch (error) {
       this.logger.error(this.localizationService.translate('prompts.failed'));

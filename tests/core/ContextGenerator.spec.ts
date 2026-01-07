@@ -1,6 +1,6 @@
 import { ContextGenerator } from '../../src/core/ContextGenerator';
 import { ITemplateProvider, IProjectDetails, ILocalizationService } from '../../src/core/interfaces';
-import { TechStack, FrontendFramework, BackendFramework, ArchitectureType } from '../../src/core/types';
+import { TechStack, FrontendFramework, BackendFramework, ArchitectureType, RigorMode } from '../../src/core/types';
 
 describe('ContextGenerator', () => {
   let contextGenerator: ContextGenerator;
@@ -26,12 +26,12 @@ describe('ContextGenerator', () => {
       workflowDirectory: '.agent/workflows',
       buildCommand: 'npm run build',
       testCommand: 'npm test',
-      techStack: {
-        frontend: FrontendFramework.REACT,
-        backend: BackendFramework.NESTJS,
-      },
+      techStack: { frontend: FrontendFramework.REACT, backend: BackendFramework.NESTJS } as TechStack,
       architecture: ArchitectureType.HEXAGONAL,
+      rigor: RigorMode.STRICT,
       projectDescription: 'Test Project',
+      isMonorepo: true,
+      apps: ['app1', 'app2'],
     };
 
     const templateContent = 'Context Template';
@@ -49,6 +49,8 @@ describe('ContextGenerator', () => {
       architecture: 'hexagonal',
       buildCommand: 'npm run build',
       testCommand: 'npm test',
+      isMonorepo: true,
+      apps: ['app1', 'app2'],
     });
     expect(result).toBe(renderedContent);
   });

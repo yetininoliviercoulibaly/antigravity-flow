@@ -5,9 +5,20 @@
 
 ## Technical Stack
 - **Stack**: <%= techStack %>
-- **Architecture**: <%= architecture %>
+-## 🏗️ Architecture
+**Pattern**: <%= architecture %>
+<% if (isMonorepo) { %>
+**Monorepo**: Yes
+**Apps**:
+<% apps.forEach(function(app) { %>
+- <%= app %>
+<% }); %>
+<% } else { %>
+**Monorepo**: No
+<% } %>
 
-## Development Commands
+## 🛠️ Build & Test
+ Commands
 - **Build**: `<%= buildCommand %>`
 - **Test**: `<%= testCommand %>`
 
