@@ -19,6 +19,10 @@ Commands:
             - Generates specific Agent Rules (.agent/rules/coding-standards.md)
             - Creates CI/CD Pipelines (.github/workflows/)
             - Sets up Role-Based Prompts (.agent/workflows/)
+            - Generates .gitignore and Dockerfile optimized for your stack
+  
+            Options:
+            --config <path>   Run initialization from a configuration file (skip prompts)
 
   guide     Show this help message.
 

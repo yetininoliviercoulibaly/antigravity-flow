@@ -18,6 +18,10 @@ Commandes :
             - Génère des Règles Agent spécifiques (.agent/rules/coding-standards.md)
             - Crée des Pipelines CI/CD (.github/workflows/)
             - Configure des Prompts par Rôle (.agent/workflows/)
+            - Génère .gitignore et Dockerfile optimisés pour votre stack
+
+            Options :
+            --config <path>   Lance l'initialisation depuis un fichier de config (sans prompt)
 
   guide     Affiche ce message d'aide.
 

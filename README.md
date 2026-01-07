@@ -24,7 +24,10 @@ It generates context-aware rules, workflows, and CI/CD pipelines tailored to you
   - **Windsurf** (`.windsurfrules`, `.windsurf/rules/`)
   - **Gemini Code Assist** (`.gemini/settings.json`)
   - **GitHub Copilot**
-- **🚀 CI/CD Generators**: Auto-creates GitHub Actions pipelines.
+- **🚀 Generators**:
+  - **CI/CD**: GitHub Actions pipelines.
+  - **Dockerfile**: Production-ready, multi-stage builds.
+  - **.gitignore**: Optimized rules for your stack.
 - **💡 Intelligent Discovery**: Auto-detects your tech stack to pre-fill prompts.
 - **💾 Configuration Persistence**: Saves your choices to `.agent/antigravity.json`.
 - **📦 Monorepo Support**: Turborepo, Nx, Lerna, pnpm/yarn workspaces.
@@ -43,6 +46,8 @@ Navigate to your project root and run:
 
 ```bash
 ag-flow init
+# or with configuration file (Non-interactive):
+ag-flow init --config ./antigravity.json
 # or
 npx antigravity-flow init
 ```
