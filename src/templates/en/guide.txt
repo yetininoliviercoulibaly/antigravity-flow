@@ -49,4 +49,4 @@ Configuration:
   You can edit this file to manually adjust your project context.
 
 Need more help?
-  Visit: https://github.com/antigravity/flow
+  Visit: https://github.com/yetininoliviercoulibaly/antigravity-flow

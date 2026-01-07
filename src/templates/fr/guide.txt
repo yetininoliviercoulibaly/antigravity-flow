@@ -48,4 +48,4 @@ Configuration :
   Vous pouvez éditer ce fichier pour ajuster manuellement le contexte.
 
 Besoin d'aide ?
-  Visitez : https://github.com/antigravity/flow
+  Visitez : https://github.com/yetininoliviercoulibaly/antigravity-flow
