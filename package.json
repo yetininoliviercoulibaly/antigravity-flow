@@ -1,0 +1,46 @@
+{
+  "name": "antigravity-flow",
+  "version": "1.0.0",
+  "description": "Antigravity Agent Workflow CLI",
+  "main": "dist/core/index.js",
+  "bin": {
+    "ag-flow": "./dist/bin/ag-flow.js"
+  },
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.js",
+    "start": "node dist/bin/ag-flow.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write 'src/**/*.ts'"
+  },
+  "keywords": [
+    "cli",
+    "agent",
+    "workflow"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^14.0.2",
+    "ejs": "^3.1.10",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^8.2.7"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "eslint": "^9.39.2",
+    "jest": "^30.2.0",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

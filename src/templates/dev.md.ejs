@@ -1,0 +1,11 @@
+---
+description: Workflow de développement standard
+---
+
+1. **Compréhension** : Analyser la demande de l'utilisateur et les fichiers concernés. 2.
+**Implémentation** : - Créer ou modifier le code source. - Si nécessaire, créer des tests unitaires
+avant (TDD). 3. **Vérification** : - Exécuter `<%= buildCommand %>` pour vérifier la compilation. -
+Exécuter `<%= testCommand %>` pour les tests unitaires. - Exécuter `npm run lint` ou équivalent pour
+le style. 4. **Commit** : - Si tout est vert, proposer un commit suivant la convention :
+`feat(scope): description`. 5. **Boucle** : - Demander à l'utilisateur s'il y a d'autres tâches ou
+si la feature est terminée. - Si terminée, proposer de créer une Pull Request.
