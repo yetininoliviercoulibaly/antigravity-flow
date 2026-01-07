@@ -17,9 +17,16 @@ export interface ITemplateProvider {
   render(templateContent: string, data: Record<string, any>): string;
 }
 
-export interface ProjectDetails {
+export interface IProjectDetails {
   rootPath: string;
   workflowDirectory: string;
+  rulesDirectory?: string;
   buildCommand: string;
   testCommand: string;
+}
+
+export interface ILocalizationService {
+  setLanguage(lang: string): void;
+  getLanguage(): string;
+  translate(key: string, args?: Record<string, string>): string;
 }

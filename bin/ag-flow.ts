@@ -7,6 +7,7 @@ import {
   NodeFileSystemAdapter,
   ConsoleLoggerAdapter,
   EjsTemplateAdapter,
+  JsonLocalizationAdapter,
 } from '../src/adapters';
 
 const program = new Command();
@@ -15,9 +16,11 @@ const program = new Command();
 const logger = new ConsoleLoggerAdapter();
 const fileSystem = new NodeFileSystemAdapter();
 const templatesDir = path.join(__dirname, '../src/templates'); // Pointing to src for dev/compiled structure check needed
+const localesDir = path.join(__dirname, '../src/locales');
+const localizationService = new JsonLocalizationAdapter(localesDir);
 const templateProvider = new EjsTemplateAdapter(templatesDir);
-const workflowGenerator = new WorkflowGenerator(fileSystem, templateProvider, logger);
-const initCommand = new InitCommand(workflowGenerator, logger);
+const workflowGenerator = new WorkflowGenerator(fileSystem, templateProvider, logger, localizationService);
+const initCommand = new InitCommand(workflowGenerator, logger, localizationService);
 
 program
   .name('antigravity-flow')

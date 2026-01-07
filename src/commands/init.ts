@@ -1,50 +1,70 @@
 import inquirer from 'inquirer';
 import { WorkflowGenerator } from '../core/WorkflowGenerator';
 import { WorkflowRole } from '../core/types';
-import { ILogger } from '../core/interfaces';
+import { ILogger, ILocalizationService } from '../core/interfaces';
 
 export class InitCommand {
   constructor(
     private workflowGenerator: WorkflowGenerator,
     private logger: ILogger,
+    private localizationService: ILocalizationService,
   ) {}
 
   async execute(): Promise<void> {
-    this.logger.info('Welcome to Antigravity Workflow Init!');
-    this.logger.info('This utility will help you generate agent workflows for your project.\n');
+    // 1. Ask for Language
+    const langAnswer = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'language',
+            message: 'Select language / Choisissez votre langue',
+            choices: ['en', 'fr'],
+            default: 'en'
+        }
+    ]);
 
-    const projectRoot = process.cwd(); // Assume CLI is run from project root
+    // 2. Set Language
+    this.localizationService.setLanguage(langAnswer.language);
 
+    // 3. Welcome Message (Localized)
+    this.logger.info(this.localizationService.translate('prompts.welcome'));
+    this.logger.info(this.localizationService.translate('prompts.intro'));
+
+    const projectRoot = process.cwd();
+
+    // 4. Ask localized questions
     const answers = await inquirer.prompt([
       {
         type: 'input',
         name: 'buildCommand',
-        message: 'What is your build command?',
+        message: this.localizationService.translate('prompts.build_command'),
         default: 'npm run build',
       },
       {
         type: 'input',
         name: 'testCommand',
-        message: 'What is your test command?',
+        message: this.localizationService.translate('prompts.test_command'),
         default: 'npm run test',
       },
       {
         type: 'checkbox',
         name: 'roles',
-        message: 'Which workflows do you want to generate?',
-        choices: Object.values(WorkflowRole),
+        message: this.localizationService.translate('prompts.workflows_selection'),
+        choices: Object.values(WorkflowRole).map(role => ({
+            name: this.localizationService.translate(`roles.${role}`),
+            value: role
+        })),
         default: [WorkflowRole.DEVELOPER, WorkflowRole.QA, WorkflowRole.LEAD_DEV],
       },
       {
         type: 'confirm',
         name: 'confirm',
-        message: 'Ready to generate files?',
+        message: this.localizationService.translate('prompts.confirm'),
         default: true,
       },
     ]);
 
     if (!answers.confirm) {
-      this.logger.warn('Operation cancelled.');
+      this.logger.warn(this.localizationService.translate('prompts.cancelled'));
       return;
     }
 
@@ -53,15 +73,14 @@ export class InitCommand {
         {
           rootPath: projectRoot,
           workflowDirectory: '.agent/workflows',
+          rulesDirectory: '.agent/rules',
           buildCommand: answers.buildCommand,
           testCommand: answers.testCommand,
         },
         answers.roles,
       );
     } catch (error) {
-      // Logger handles the error inside generator or here.
-      // Already logged in generator for specific file failures.
-      this.logger.error('Failed to complete initialization.');
+      this.logger.error(this.localizationService.translate('prompts.failed'));
     }
   }
 }

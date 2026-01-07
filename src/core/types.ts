@@ -5,6 +5,7 @@ export enum WorkflowRole {
   ARCHITECT = 'architect',
   PRODUCT_OWNER = 'po',
   BUSINESS_ANALYST = 'ba',
+  RULES = 'rules',
 }
 
 export const WORKFLOW_FILES = {
@@ -14,6 +15,7 @@ export const WORKFLOW_FILES = {
   [WorkflowRole.ARCHITECT]: 'architect.md',
   [WorkflowRole.PRODUCT_OWNER]: 'po.md',
   [WorkflowRole.BUSINESS_ANALYST]: 'ba.md',
+  [WorkflowRole.RULES]: 'coding-standards.md',
 };
 
 export interface WorkflowConfig {

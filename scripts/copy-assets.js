@@ -1,9 +1,14 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const src = path.join(__dirname, '../src/templates');
-const dest = path.join(__dirname, '../dist/src/templates');
+const templatesSrc = path.join(__dirname, '../src/templates');
+const templatesDest = path.join(__dirname, '../dist/src/templates');
+const localesSrc = path.join(__dirname, '../src/locales');
+const localesDest = path.join(__dirname, '../dist/src/locales');
 
-fs.copy(src, dest)
-  .then(() => console.log('Templates copied successfully!'))
+Promise.all([
+  fs.copy(templatesSrc, templatesDest),
+  fs.copy(localesSrc, localesDest)
+])
+  .then(() => console.log('Assets (templates & locales) copied successfully!'))
   .catch(err => console.error(err));

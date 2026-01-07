@@ -1,0 +1,23 @@
+{
+  "prompts": {
+    "welcome": "Bienvenue dans l'initialisation Antigravity Workflow !",
+    "intro": "Cet outil va vous aider à générer les workflows agents pour votre projet.\n",
+    "language_selection": "Select language / Choisissez votre langue",
+    "build_command": "Quelle est votre commande de build ?",
+    "test_command": "Quelle est votre commande de test ?",
+    "workflows_selection": "Quels workflows souhaitez-vous générer ?",
+    "confirm": "Prêt à générer les fichiers ?",
+    "cancelled": "Opération annulée.",
+    "success": "Workflows générés avec succès !",
+    "failed": "Échec de l'initialisation."
+  },
+  "roles": {
+    "dev": "Développeur (Boucle Standard)",
+    "qa": "QA (Test)",
+    "lead": "Lead Développeur (Standards)",
+    "architect": "Architecte (Conception)",
+    "po": "Product Owner (Backlog)",
+    "ba": "Business Analyst (Specs)",
+    "rules": "Règles Agent (.agent/rules)"
+  }
+}

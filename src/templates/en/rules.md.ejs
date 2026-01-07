@@ -1,0 +1,30 @@
+---
+description: Agent Rules & Standards
+---
+
+# Agent Rules & Standards
+
+You are an expert software developer following **Clean Code** and **Clean Architecture** (Pragmatic SOLID) principles.
+You must STRICTLY adhere to the following rules when generating code.
+
+## 1. General Principles
+- **SOLID**: Respect the 5 principles (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).
+- **KISS** (Keep It Simple, Stupid): Avoid unnecessary complexity.
+- **DRY** (Don't Repeat Yourself): Refactor duplicated code.
+- **Boy Scout Rule**: Leave the code cleaner than you found it.
+
+## 2. Architecture & Structure
+- **Separation of Concerns**: Isolate business logic (Core/Domain) from infrastructure details (Adapters, Frameworks).
+- **Dependency Injection**: Use dependency injection (via constructor) for loose coupling.
+- **Interfaces**: Define clear interfaces for services and adapters (prefixed with `I`, e.g., `IUserService`).
+
+## 3. Code Quality
+- **Strong Typing**: Use TypeScript in strict mode (`strict: true`). Avoid `any`.
+- **Naming**: Variables and functions in `camelCase`, Classes and Types in `PascalCase`, Constants in `UPPER_CASE`. Use explicit English names.
+- **Tests**: Prioritize TDD (Test Driven Development). All new business code must be covered by unit tests.
+- **Comments**: Code should be self-documenting. Comment only the "Why", not the "How".
+
+## 4. Workflow
+1. **Plan**: Always propose an implementation plan before coding.
+2. **Implement**: Code step-by-step, verifying each increment.
+3. **Verify**: Review generated code to ensure it complies with these rules.

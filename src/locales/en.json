@@ -1,0 +1,23 @@
+{
+  "prompts": {
+    "welcome": "Welcome to Antigravity Workflow Init!",
+    "intro": "This utility will help you generate agent workflows for your project.\n",
+    "language_selection": "Select language / Choisissez votre langue",
+    "build_command": "What is your build command?",
+    "test_command": "What is your test command?",
+    "workflows_selection": "Which workflows do you want to generate?",
+    "confirm": "Ready to generate files?",
+    "cancelled": "Operation cancelled.",
+    "success": "Workflows generated successfully!",
+    "failed": "Failed to complete initialization."
+  },
+  "roles": {
+    "dev": "Developer (Standard Loop)",
+    "qa": "QA (Testing)",
+    "lead": "Lead Developer (Standards)",
+    "architect": "Architect (Design)",
+    "po": "Product Owner (Backlog)",
+    "ba": "Business Analyst (Specs)",
+    "rules": "Agent Rules (.agent/rules)"
+  }
+}

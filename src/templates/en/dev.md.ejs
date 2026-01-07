@@ -1,0 +1,17 @@
+---
+description: Standard Development Workflow
+---
+
+1. **Understanding**: Analyze the user request and relevant files.
+2. **Implementation**:
+   - Create or modify source code.
+   - Use TDD (write tests before code) if applicable.
+3. **Verification**:
+   - Run `<%= buildCommand %>` to check compilation.
+   - Run `<%= testCommand %>` for unit tests.
+   - Run `npm run lint` or equivalent for style checks.
+4. **Commit**:
+   - If everything is green, propose a commit following the convention: `feat(scope): description`.
+5. **Loop**:
+   - Ask the user if there are other tasks or if the feature is complete.
+   - If complete, propose creating a Pull Request.

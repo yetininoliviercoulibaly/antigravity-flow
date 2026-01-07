@@ -1,4 +1,4 @@
-import { IFileSystem, ILogger, ITemplateProvider, ProjectDetails } from './interfaces';
+import { IFileSystem, ILogger, ITemplateProvider, IProjectDetails, ILocalizationService } from './interfaces';
 import { WorkflowRole, WORKFLOW_FILES } from './types';
 import * as path from 'path';
 
@@ -7,56 +7,67 @@ export class WorkflowGenerator {
     private fileSystem: IFileSystem,
     private templateProvider: ITemplateProvider,
     private logger: ILogger,
+    private localizationService: ILocalizationService,
   ) {}
 
   /**
    * Generates workflow files for the specified project.
    */
-  async generateWorkflows(project: ProjectDetails, roles: WorkflowRole[]): Promise<void> {
-    this.logger.info(`Starting workflow generation for project at: ${project.rootPath}`);
-
-    // Ensure .agent/workflows directory exists
+  async generateWorkflows(project: IProjectDetails, roles: WorkflowRole[]): Promise<void> {
+    this.logger.info(this.localizationService.translate('prompts.intro'));
+    
+    // Ensure .agent/workflows directory exists for standard workflows
     const workflowsDir = path.join(project.rootPath, project.workflowDirectory);
-    if (!(await this.fileSystem.exists(workflowsDir))) {
-      this.logger.info(`Creating directory: ${workflowsDir}`);
-      await this.fileSystem.createDirectory(workflowsDir);
-    }
 
     // Generate each selected role workflow
     for (const role of roles) {
-      await this.generateWorkflowForRole(role, project, workflowsDir);
+      if (role === WorkflowRole.RULES) {
+          if (project.rulesDirectory) {
+              const rulesDir = path.join(project.rootPath, project.rulesDirectory);
+              await this.ensureDirectory(rulesDir);
+              await this.generateWorkflowForRole(role, project, rulesDir);
+          }
+      } else {
+          await this.ensureDirectory(workflowsDir);
+          await this.generateWorkflowForRole(role, project, workflowsDir);
+      }
     }
 
-    this.logger.success('Workflow generation completed successfully.');
+    this.logger.success(this.localizationService.translate('prompts.success'));
+  }
+
+  private async ensureDirectory(dirPath: string): Promise<void> {
+      if (!(await this.fileSystem.exists(dirPath))) {
+          this.logger.info(`Creating directory: ${dirPath}`);
+          await this.fileSystem.createDirectory(dirPath);
+      }
   }
 
   private async generateWorkflowForRole(
     role: WorkflowRole,
-    project: ProjectDetails,
+    project: IProjectDetails,
     outputDir: string,
   ): Promise<void> {
     const fileName = WORKFLOW_FILES[role];
     const outputPath = path.join(outputDir, fileName);
+    const lang = this.localizationService.getLanguage(); // Get current language
+    
+    // Template path now includes language: src/templates/<lang>/<role>.md.ejs
+    const templatePath = path.join(lang, `${role}.md.ejs`);
 
-    this.logger.info(`Generating ${role} workflow: ${fileName}`);
+    this.logger.info(`Generating ${fileName} from template ${templatePath}...`);
 
     try {
-      if (await this.fileSystem.exists(outputPath)) {
-        this.logger.warn(`File ${fileName} already exists. Skipping.`);
-        return;
-      }
-
-      const templateContent = await this.templateProvider.getTemplate(role);
-      const renderedContent = this.templateProvider.render(templateContent, {
+      const templateContent = await this.templateProvider.getTemplate(templatePath);
+      const content = this.templateProvider.render(templateContent, {
         buildCommand: project.buildCommand,
         testCommand: project.testCommand,
       });
 
-      await this.fileSystem.writeFile(outputPath, renderedContent);
-      this.logger.info(`Created ${fileName}`);
-    } catch (error: any) {
-      this.logger.error(`Failed to generate ${fileName}: ${error.message}`);
-      throw error;
+      await this.fileSystem.writeFile(outputPath, content);
+      this.logger.success(`Created: ${outputPath}`);
+    } catch (error) {
+      this.logger.error(`Failed to generate ${fileName}: ${(error as Error).message}`);
     }
   }
 }

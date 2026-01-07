@@ -6,11 +6,8 @@ import { ITemplateProvider } from '../core/interfaces';
 export class EjsTemplateAdapter implements ITemplateProvider {
   constructor(private templatesDir: string) {}
 
-  async getTemplate(templateName: string): Promise<string> {
-    // Determine file path. Assuming templateName maps to filename without extension or with.
-    // In our types we used 'dev' -> 'dev.md'. Ideally templates source might be 'dev.md.ejs'
-    const fileName = `${templateName}.md.ejs`;
-    const templatePath = path.join(this.templatesDir, fileName);
+  async getTemplate(templatePath: string): Promise<string> {
+    const fullPath = path.join(this.templatesDir, templatePath);
 
     if (!(await fs.pathExists(templatePath))) {
       throw new Error(`Template not found: ${templatePath}`);
