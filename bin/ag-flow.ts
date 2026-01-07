@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import * as path from 'path';
-import { InitCommand, GuideCommand } from '../src/commands';
+import { InitCommand, GuideCommand, TemplatesCommand } from '../src/commands';
 import { WorkflowGenerator, RulesComposer, ContextGenerator, PipelineGenerator, ConfigService, StackDetector, GitignoreGenerator, DockerfileGenerator } from '../src/core';
 import {
   NodeFileSystemAdapter,
@@ -20,7 +20,9 @@ const templatesDir = path.join(__dirname, '../src/templates');
 const localesDir = path.join(__dirname, '../src/locales');
 
 const localizationService = new JsonLocalizationAdapter(localesDir);
-const templateProvider = new EjsTemplateAdapter(templatesDir);
+// Allow override from .agent/templates
+const customTemplatesDir = path.join(process.cwd(), '.agent/templates');
+const templateProvider = new EjsTemplateAdapter(templatesDir, customTemplatesDir);
 
 const rulesComposer = new RulesComposer(templateProvider, localizationService);
 const contextGenerator = new ContextGenerator(templateProvider, localizationService);
@@ -57,6 +59,13 @@ const guideCommand = new GuideCommand(
     localizationService,
     templateProvider,
     configService
+);
+
+const templatesCommand = new TemplatesCommand(
+    logger,
+    localizationService,
+    templatesDir,
+    customTemplatesDir
 );
 
 program
@@ -105,6 +114,26 @@ program
   `)
   .action(async (lang) => {
     await guideCommand.execute(lang);
+    await guideCommand.execute(lang);
+  });
+
+program
+  .command('templates')
+  .description('Manage and customize templates')
+  .argument('[action]', 'Action to perform (list, update)', 'list')
+  .argument('[template]', 'Template name (for update action)')
+  .addHelpText('after', `
+    
+    Examples:
+      $ ag-flow templates list
+      $ ag-flow templates update docker/django.Dockerfile.ejs
+      
+    Description:
+      - list: Shows all available templates and indicates if they are customized.
+      - update: Opens the template in your default editor and saves a custom copy to .agent/templates/.
+  `)
+  .action(async (action, template) => {
+    await templatesCommand.execute(action, template);
   });
 
 program.parse(process.argv);

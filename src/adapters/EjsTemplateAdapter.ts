@@ -4,9 +4,21 @@ import * as fs from 'fs-extra';
 import { ITemplateProvider } from '../core/interfaces';
 
 export class EjsTemplateAdapter implements ITemplateProvider {
-  constructor(private templatesDir: string) {}
+  constructor(
+    private templatesDir: string,
+    private customTemplatesDir?: string
+  ) {}
 
   async getTemplate(templatePath: string): Promise<string> {
+    // 1. Check custom override
+    if (this.customTemplatesDir) {
+        const customPath = path.join(this.customTemplatesDir, templatePath);
+        if (await fs.pathExists(customPath)) {
+            return fs.readFile(customPath, 'utf8');
+        }
+    }
+
+    // 2. Fallback to built-in
     const fullPath = path.join(this.templatesDir, templatePath);
 
     if (!(await fs.pathExists(fullPath))) {
