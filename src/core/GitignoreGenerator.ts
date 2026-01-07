@@ -46,6 +46,18 @@ export class GitignoreGenerator implements IGitignoreGenerator {
       case BackendFramework.RUST:
         fragments.add('rust');
         break;
+      case BackendFramework.GO:
+      case BackendFramework.GIN:
+        fragments.add('go');
+        break;
+    }
+
+    if (techStack.smartContract === 'solidity' || techStack.smartContract === 'scrypto') {
+        // Scrypto has no specific gitignore template yet? Rust one covers it mostly.
+        if (techStack.smartContract === 'solidity') {
+            fragments.add('solidity');
+        }
+        // If scrypto, maybe just rust is enough
     }
 
     // Database (if local files)

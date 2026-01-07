@@ -1,0 +1,19 @@
+# Hardhat
+cache/
+artifacts/
+
+# Foundry
+out/
+broadcast/
+cache_forge/
+
+# General
+node_modules/
+.env
+coverage/
+coverage.json
+typechain/
+typechain-types/
+
+# Slither
+slither.db.json

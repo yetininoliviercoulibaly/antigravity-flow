@@ -59,6 +59,27 @@ export class DockerfileGenerator implements IDockerfileGenerator {
              data.startCommand = 'poetry run uvicorn main:app --host 0.0.0.0 --port 8000';
         }
         break;
+      case BackendFramework.DJANGO:
+        templateName = 'docker/django.Dockerfile.ejs';
+        data.port = 8000;
+        data.startCommand = 'python manage.py runserver 0.0.0.0:8000'; // Or gunicorn
+        break;
+      case BackendFramework.SPRING_BOOT:
+        templateName = 'docker/springboot.Dockerfile.ejs';
+        data.port = 8080;
+        break;
+      case BackendFramework.GO:
+      case BackendFramework.GIN:
+      case BackendFramework.RUST: // Using Go template for Rust??? No, stick to Go. Wait, RUST has no dockerfile?
+        // Ah, Rust was not in original switch. Let's add Go first.
+        if (techStack.backend === BackendFramework.RUST) {
+             // TODO: Rust Dockerfile template
+             this.logger.warn('Rust Dockerfile template not yet implemented.');
+             return;
+        }
+        templateName = 'docker/go.Dockerfile.ejs';
+        data.port = 8080;
+        break;
       default:
         this.logger.warn(`No Dockerfile template found for backend: ${techStack.backend}`);
         return;
@@ -78,16 +99,15 @@ export class DockerfileGenerator implements IDockerfileGenerator {
           // Also generate .dockerignore
           const dockerignorePath = path.join(projectRoot, '.dockerignore');
           if (!await this.fileSystem.exists(dockerignorePath)) {
-              await this.fileSystem.writeFile(dockerignorePath, 
-`node_modules
-dist
-build
-.git
-.env
-Dockerfile
-.dockerignore
-`);
-             this.logger.success('.dockerignore generated successfully.');
+              try {
+                  const ignoreTemplate = await this.templateProvider.getTemplate('docker/dockerignore.ejs');
+                  // No data needed for now, but good to have
+                  const ignoreContent = this.templateProvider.render(ignoreTemplate, {});
+                  await this.fileSystem.writeFile(dockerignorePath, ignoreContent);
+                  this.logger.success('.dockerignore generated successfully.');
+              } catch (e) {
+                  this.logger.warn('Failed to generate .dockerignore from template.');
+              }
           }
       }
 
