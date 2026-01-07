@@ -75,9 +75,22 @@ export class WorkflowGenerator {
 
         try {
             const templateContent = await this.templateProvider.getTemplate(templatePath);
+            
+            // Load architecture fragment if needed (for architect/lead roles)
+            let folderStructure = '';
+            if (role === WorkflowRole.ARCHITECT || role === WorkflowRole.LEAD_DEV) {
+                const archTemplatePath = `${lang}/fragments/arch/${project.architecture}.md.ejs`;
+                try {
+                    folderStructure = await this.templateProvider.getTemplate(archTemplatePath);
+                } catch (e) {
+                    this.logger.warn(`Missing architecture fragment: ${archTemplatePath}`);
+                }
+            }
+
             content = this.templateProvider.render(templateContent, {
                 buildCommand: project.buildCommand,
                 testCommand: project.testCommand,
+                folderStructure: folderStructure,
             });
         } catch (error) {
             this.logger.error(`Failed to generate ${fileName}: ${(error as Error).message}`);

@@ -1,0 +1,14 @@
+### Structure de Dossiers Proposée (Architecture Hexagonale / Clean)
+
+```
+src/
+├── core/                  # Couche Domaine & Application (Pure TS/JS, Pas de dépendances externes)
+│   ├── entities/          # Logique Métier & Types
+│   ├── interfaces/        # Ports (Interfaces pour Repositories, Services)
+│   └── use-cases/         # Règles de Gestion Applicatives
+├── adapters/              # Couche Infrastructure
+│   ├── persistence/       # Implémentations Base de Données (TypeORM, Prisma...)
+│   ├── api/               # APIs Externes (Stripe, formatting...)
+│   └── ui/                # Présentateurs / Adaptateurs CLI
+└── infrastructure/        # Configuration Framework (Modules NestJS, Setup Express)
+```

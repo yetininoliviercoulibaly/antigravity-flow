@@ -1,0 +1,14 @@
+### Proposed Folder Structure (Hexagonal / Clean Architecture)
+
+```
+src/
+├── core/                  # Domain & Application Layer (Pure TS/JS, No external deps)
+│   ├── entities/          # Domain Logic & Types
+│   ├── interfaces/        # Ports (Interfaces for Repositories, Services)
+│   └── use-cases/         # Application Business Rules
+├── adapters/              # Infrastructure Layer
+│   ├── persistence/       # Database implementations (TypeORM, Prisma...)
+│   ├── api/               # External APIs (Stripe, formatting...)
+│   └── ui/                # Presenters / CLI Adapters
+└── infrastructure/        # Framework configuration (NestJS Modules, Express setup)
+```

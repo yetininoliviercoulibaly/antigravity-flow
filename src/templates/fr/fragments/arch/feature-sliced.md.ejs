@@ -1,0 +1,12 @@
+### Structure de Dossiers Proposée (Feature-Sliced Design)
+
+```
+src/
+├── app/                   # Paramètres globaux, styles, providers
+├── processes/             # Scénarios complexes inter-pages (Auth, Paiement)
+├── pages/                 # Pages complètes (Routage)
+├── widgets/               # Composition de features/entités
+├── features/              # Interactions utilisateur (Ajout Panier, Connexion)
+├── entities/              # Entités métier (User, Produit)
+└── shared/                # Code réutilisable (UI Kit, libs)
+```

@@ -1,0 +1,12 @@
+### Proposed Folder Structure (Feature-Sliced Design)
+
+```
+src/
+├── app/                   # App-wide settings, styles, providers
+├── processes/             # Complex inter-page scenarios (Auth, Payment)
+├── pages/                 # Full pages (Routing)
+├── widgets/               # Composition of features/entities
+├── features/              # User interactions (Add to Cart, Login)
+├── entities/              # Business entities (User, Product)
+└── shared/                # Reusable code (UI Kit, libs)
+```
