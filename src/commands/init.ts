@@ -377,6 +377,7 @@ export class InitCommand {
         choices: [
           { name: 'Cursor (.cursor/rules)', value: IdeIntegration.CURSOR },
           { name: 'Windsurf (.windsurfrules)', value: IdeIntegration.WINDSURF },
+          { name: 'Google Antigravity (.antigravity)', value: IdeIntegration.ANTIGRAVITY },
           { name: 'Gemini Code Assist (.gemini)', value: IdeIntegration.GEMINI },
           { name: 'GitHub Copilot', value: IdeIntegration.COPILOT },
         ],
@@ -465,7 +466,17 @@ export class InitCommand {
     if (ideIntegrations.includes(IdeIntegration.GEMINI)) {
       await this.integrateGemini(projectDetails, rulesContent);
     }
+    if (ideIntegrations.includes(IdeIntegration.ANTIGRAVITY)) {
+      await this.integrateAntigravity(projectDetails, rulesContent);
+    }
     // Future: Copilot, Cody integrations
+  }
+
+  private async integrateAntigravity(projectDetails: IProjectDetails, rulesContent: string): Promise<void> {
+      const antigravityPath = path.join(projectDetails.rootPath, '.antigravity/rules.md');
+      await this.fileSystem.createDirectory(path.dirname(antigravityPath));
+      await this.fileSystem.writeFile(antigravityPath, rulesContent);
+      this.logger.success('Integrated with Google Antigravity (.antigravity/rules.md)');
   }
 
   private async integrateCursor(projectDetails: IProjectDetails, rulesContent: string, roles: WorkflowRole[]): Promise<void> {

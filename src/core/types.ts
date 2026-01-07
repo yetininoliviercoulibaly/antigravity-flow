@@ -296,6 +296,7 @@ export enum IdeIntegration {
   CURSOR = 'cursor',
   WINDSURF = 'windsurf',
   GEMINI = 'gemini',
+  ANTIGRAVITY = 'antigravity',
   COPILOT = 'copilot',
   CODY = 'cody',
 }

@@ -43,6 +43,14 @@ npm install -g antigravity-flow
 npx antigravity-flow init
 ```
 
+````
+
+## 🔄 Updating
+To update to the latest version:
+```bash
+npm update -g antigravity-flow
+````
+
 ## 🚀 Usage
 
 Navigate to your project root and run:
