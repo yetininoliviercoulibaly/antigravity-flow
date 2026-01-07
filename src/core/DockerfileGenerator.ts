@@ -113,7 +113,6 @@ export class DockerfileGenerator implements IDockerfileGenerator {
 
     } catch (error) {
       this.logger.error('Failed to generate Dockerfile.');
-      console.error(error);
     }
   }
 }

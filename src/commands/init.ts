@@ -91,7 +91,6 @@ export class InitCommand {
       this.logger.success(this.localizationService.translate('prompts.success'));
     } catch (error) {
       this.logger.error(this.localizationService.translate('prompts.failed'));
-      console.error(error);
     }
   }
 
