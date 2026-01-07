@@ -1,0 +1,6 @@
+### 🛡️ Legacy Refactoring Rules
+- **Characterization Tests First**: Before changing any code, write tests that capture the current behavior (bugs and all).
+- **Refactoring Strategy**: Use the "Strangler Fig" pattern for major rewrites. refactor only the code you touch ("Boy Scout Rule").
+- **Code Coverage**: Do not enforce 100% on old code. Focus on coverage for *new* code and *changed* legacy code.
+- **Technical Debt**: Mark known issues with `// TODO: [Legacy]`. Don't try to fix everything at once.
+- **Types**: Use `any` effectively if types are missing, but aim to introduce interfaces for boundary layers.

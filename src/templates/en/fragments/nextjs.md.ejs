@@ -1,0 +1,10 @@
+## Next.js Specific Rules
+
+1.  **App Router**: Use the App Router (app/) for new projects. Only use Pages Router for legacy compatibility.
+2.  **Server Components**: Use Server Components by default. Add `'use client'` only when needed.
+3.  **Data Fetching**: Use `fetch()` with caching strategies, not `getServerSideProps`/`getStaticProps`.
+4.  **API Routes**: Use Route Handlers (app/api/) for server-side logic.
+5.  **Metadata**: Use the Metadata API for SEO, not manual `<head>` manipulation.
+6.  **Image Optimization**: Always use `next/image` for images.
+7.  **Environment Variables**: Use `NEXT_PUBLIC_` prefix for client-exposed variables only.
+8.  **Middleware**: Use middleware.ts for authentication and redirects.

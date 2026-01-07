@@ -1,0 +1,10 @@
+### Standards de Développement Rust
+
+- **Chaîne d'outils**: Utilisez `cargo` pour la gestion des dépendances, la compilation et les tests.
+- **Formatage**: Appliquez `cargo fmt` (rustfmt) pour un style de code cohérent.
+- **Linting**: Utilisez `cargo clippy` et corrigez tous les avertissements.
+- **Gestion des Erreurs**: Utilisez explicitement les types `Result` et `Option`. Évitez `unwrap()` et `expect()` en production ; préférez la propagation `?` ou le pattern matching.
+- **Documentation**: Écrivez des commentaires de documentation `///` pour toutes les API publiques.
+- **Tests**:
+    - Tests unitaires dans le même fichier module `#[cfg(test)] mod tests { ... }`.
+    - Tests d'intégration dans le dossier `tests/`.

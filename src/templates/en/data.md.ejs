@@ -1,0 +1,47 @@
+---
+description: Data Engineering & Analytics Workflow
+---
+
+1. **Data Modeling**:
+   - Design efficient schemas for data warehouses (Star/Snowflake schema).
+   - Define data types and constraints rigorously.
+   - Document entity relationships and lineage.
+   - Optimize for query performance (partitioning, indexing).
+
+2. **ETL/ELT Pipelines**:
+   - Build robust data ingestion pipelines (Airflow, Dagster, Prefect).
+   - Ensure idempotency and fault tolerance.
+   - Monitor data freshness and volume.
+   - Handle schema evolution gracefully.
+
+3. **Data Quality & Governance**:
+   - Implement data quality checks (Great Expectations, dbt tests).
+   - Monitor for nulls, duplicates, and anomalies.
+   - Manage PII and sensitive data access (masking, tokenization).
+   - Catalog data assets for discoverability.
+
+4. **Infrastructure & Storage**:
+   - Manage data lake/warehouse infrastructure (Snowflake, BigQuery, S3).
+   - Optimize storage costs and lifecycle policies.
+   - Configure access controls and networking.
+
+5. **Transformation Logic**:
+   - Use dbt for modular SQL transformations.
+   - Version control all transformation logic.
+   - Review complex SQL queries for performance.
+   - Document business logic within the code.
+
+6. **Reporting & Analytics Support**:
+   - Create clean, aggregated views for BI tools (Tableau, Looker, PowerBI).
+   - Collaborate with analysts to define metrics.
+   - Ensure data consistency across reports.
+
+<%- folderStructure %>
+
+## Data Engineer Checklist
+- [ ] Data models are documented
+- [ ] Pipelines are idempotent and monitored
+- [ ] Data quality tests pass
+- [ ] PII is handled correctly
+- [ ] Transformations are tested (dbt test)
+- [ ] Lineage is clear

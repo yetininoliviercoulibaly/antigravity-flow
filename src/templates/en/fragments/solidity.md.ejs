@@ -1,0 +1,20 @@
+## Solidity Specific Rules
+
+1.  **Version Pragma**: Always specify a specific Solidity version or range.
+2.  **Visibility**: Explicitly declare function visibility (public, external, internal, private).
+3.  **Reentrancy**: Follow CEI pattern (Checks-Effects-Interactions) to prevent reentrancy.
+4.  **Gas Optimization**: Minimize storage writes, use `memory` for temporary data.
+5.  **Events**: Emit events for all state changes for off-chain indexing.
+6.  **Access Control**: Use OpenZeppelin's Ownable or AccessControl.
+7.  **Error Handling**: Use custom errors instead of require strings for gas efficiency.
+8.  **Testing**: Use Foundry or Hardhat for comprehensive testing.
+9.  **Upgradability**: Use proxy patterns (UUPS, Transparent) if upgradeable.
+10. **Audit**: All contracts must be audited before mainnet deployment.
+
+### Security Checklist
+- [ ] Reentrancy guards implemented
+- [ ] Integer overflow/underflow handled (Solidity 0.8+)
+- [ ] Access control verified
+- [ ] External call risks assessed
+- [ ] Flash loan attack vectors considered
+- [ ] Front-running mitigations in place

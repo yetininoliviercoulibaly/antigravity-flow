@@ -1,0 +1,25 @@
+# Build stage
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json <%= packageManager === 'npm' ? 'package-lock.json' : (packageManager === 'yarn' ? 'yarn.lock' : 'pnpm-lock.yaml') %> ./
+
+RUN <%= installCommand %>
+
+COPY . .
+
+RUN <%= buildCommand %>
+
+# Production stage
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+EXPOSE <%= port %>
+
+CMD [ "<%= startCommand.split(' ')[0] %>", "<%= startCommand.split(' ').slice(1).join('", "') %>" ]

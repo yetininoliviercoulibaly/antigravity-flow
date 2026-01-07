@@ -1,26 +1,35 @@
 {
   "name": "antigravity-flow",
   "version": "1.0.0",
-  "description": "Antigravity Agent Workflow CLI",
-  "main": "dist/core/index.js",
+  "description": "Universal AI Context Generator & Workflow CLI for Cursor, Windsurf, and Antigravity.",
+  "main": "dist/src/core/index.js",
   "bin": {
     "ag-flow": "./dist/bin/ag-flow.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "tsc && node scripts/copy-assets.js",
+    "build": "node scripts/clean.js && tsc && node scripts/copy-assets.js",
     "start": "node dist/bin/ag-flow.js",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
-    "format": "prettier --write 'src/**/*.ts'"
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "keywords": [
     "cli",
     "agent",
-    "workflow"
+    "workflow",
+    "ai",
+    "automation",
+    "rigor",
+    "antigravity"
   ],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "author": "Coulibaly Yetinin Olivier",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^14.0.2",

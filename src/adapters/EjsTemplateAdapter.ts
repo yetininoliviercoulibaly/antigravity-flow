@@ -9,11 +9,11 @@ export class EjsTemplateAdapter implements ITemplateProvider {
   async getTemplate(templatePath: string): Promise<string> {
     const fullPath = path.join(this.templatesDir, templatePath);
 
-    if (!(await fs.pathExists(templatePath))) {
-      throw new Error(`Template not found: ${templatePath}`);
+    if (!(await fs.pathExists(fullPath))) {
+      throw new Error(`Template not found: ${fullPath}`);
     }
 
-    return fs.readFile(templatePath, 'utf8');
+    return fs.readFile(fullPath, 'utf8');
   }
 
   render(templateContent: string, data: Record<string, any>): string {

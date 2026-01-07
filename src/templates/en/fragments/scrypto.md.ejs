@@ -1,0 +1,8 @@
+### 🧩 Scrypto (RadixDLT) Guidelines
+- **Asset-Oriented**: Treat resources (Tokens, NFTs) as first-class citizens using `Buckets` and `Vaults`. Avoid tracking balances in generic maps.
+- **Blueprints & Components**: Keep blueprints modular. Use `functions` for instantiation and `methods` for state mutation.
+- **Testing**:
+    - Use `TestEnvironment` for unit tests (fast, isolated).
+    - Use `LedgerSimulator` for integration tests (manifest-based).
+    - Run tests with `cargo test`.
+- **Security**: Use `Badges` for authorization (Actor-Virtual-Badge pattern). Validate all resource movements (withdrawals/deposits).

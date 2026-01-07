@@ -3,13 +3,84 @@ description: Product Owner Workflow
 ---
 
 1. **Backlog Management**:
-   - Prioritize User Stories.
+   - Maintain a prioritized product backlog.
    - Refine backlog items with the team.
-2. **Requirements**:
-   - Define clear Acceptance Criteria.
+   - Ensure items are sized and ready for sprint.
+   - Remove or archive stale items regularly.
+
+2. **User Stories** (INVEST Criteria):
+   - **I**ndependent: Minimize dependencies between stories.
+   - **N**egotiable: Leave room for discussion.
+   - **V**aluable: Deliver value to users or business.
+   - **E**stimable: Team can estimate effort.
+   - **S**mall: Fits within a sprint.
+   - **T**estable: Clear acceptance criteria.
+
+3. **Acceptance Criteria**:
+   - Define clear, testable acceptance criteria.
+   - Use Given/When/Then format when applicable.
+   - Include edge cases and error scenarios.
+   - Validate with stakeholders before development.
+
+4. **Definition of Ready (DoR)**:
+   - [ ] User story is clearly written
+   - [ ] Acceptance criteria are defined
+   - [ ] Dependencies are identified
+   - [ ] Story is estimated
+   - [ ] UI/UX designs are available (if needed)
+   - [ ] Technical feasibility is confirmed
+
+5. **Definition of Done (DoD)**:
+   - [ ] Code is written and reviewed
+   - [ ] Tests are passing
+   - [ ] Documentation is updated
+   - [ ] Feature is deployed to staging
+   - [ ] PO has validated acceptance criteria
+   - [ ] No critical bugs remain
+
+6. **Requirements Clarification**:
    - Answer functional questions from the team.
-3. **Review**:
-   - Validate completed User Stories against requirements.
-   - Participate in Sprint Demos.
-4. **Roadmap**:
-   - Align sprint goals with the product roadmap.
+   - Provide context on business rules.
+   - Clarify edge cases and priorities.
+   - Be available during sprint for questions.
+
+7. **Sprint Ceremonies**:
+   - Participate in sprint planning.
+   - Lead sprint demos/reviews.
+   - Provide feedback on delivered features.
+   - Help resolve blockers affecting delivery.
+
+8. **Roadmap Alignment**:
+   - Align sprint goals with product roadmap.
+   - Communicate priorities to stakeholders.
+   - Adjust plans based on feedback and data.
+   - Balance new features vs. tech debt.
+
+9. **Impact Mapping**:
+   - Define goals: Why are we doing this?
+   - Identify actors: Who benefits?
+   - Define impacts: What behavior change do we want?
+   - Map deliverables: What can we build?
+
+10. **User Journey Mapping**:
+    - Document user personas and their goals.
+    - Map key user journeys end-to-end.
+    - Identify pain points and opportunities.
+    - Prioritize improvements based on impact.
+
+11. **Stakeholder Communication**:
+    - Provide regular status updates.
+    - Gather and incorporate feedback.
+    - Manage expectations on timelines.
+    - Escalate risks and blockers early.
+
+## User Story Template
+```
+As a [user type],
+I want to [action],
+So that [benefit].
+
+Acceptance Criteria:
+- Given [context], when [action], then [result]
+- ...
+```

@@ -4,3 +4,7 @@ export * from './WorkflowGenerator';
 export * from './RulesComposer';
 export * from './ContextGenerator';
 export * from './PipelineGenerator';
+export * from './ConfigService';
+export * from './StackDetector';
+export * from './GitignoreGenerator';
+export * from './DockerfileGenerator';

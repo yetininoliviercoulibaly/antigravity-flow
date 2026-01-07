@@ -1,0 +1,13 @@
+## Spring Boot Specific Rules
+
+1.  **Project Structure**: Organize by feature/domain, not by layer.
+2.  **Dependency Injection**: Use constructor injection, avoid field injection.
+3.  **Configuration**: Use application.yml with profiles for environments.
+4.  **REST Controllers**: Use @RestController with proper HTTP methods and status codes.
+5.  **Service Layer**: Keep business logic in @Service classes.
+6.  **Repository**: Use Spring Data JPA repositories, custom queries in @Query.
+7.  **Validation**: Use @Valid and Bean Validation annotations.
+8.  **Exception Handling**: Use @ControllerAdvice for global exception handling.
+9.  **Security**: Use Spring Security for authentication and authorization.
+10. **Testing**: Use @SpringBootTest for integration, @WebMvcTest for controllers.
+11. **Actuator**: Enable health and metrics endpoints for observability.

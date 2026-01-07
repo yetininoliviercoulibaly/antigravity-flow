@@ -1,0 +1,55 @@
+---
+description: Security Engineering & Compliance Workflow
+---
+
+1. **Threat Modeling**:
+   - Conduct threat modeling exercises during design phases (STRIDE, DREAD).
+   - Identify potential attack vectors and vulnerabilities.
+   - Document security requirements and mitigations.
+   - Update threat models as architecture evolves.
+
+2. **Application Security (AppSec)**:
+   - Ensure secure coding practices (OWASP Top 10).
+   - Implement input validation and output encoding to prevent injection attacks.
+   - Enforce proper authentication and session management.
+   - Use secure cryptographic libraries and practices.
+
+3. **Infrastructure Security**:
+   - Harden servers and containers (CIS Benchmarks).
+   - Implement network segmentation and firewalls (WAF).
+   - Ensure encryption at rest and in transit (TLS/SSL).
+   - Manage IAM policies with least privilege principle.
+
+4. **Security Testing**:
+   - Integrate SAST (Static Application Security Testing) in CI pipelines.
+   - Integrate DAST (Dynamic Application Security Testing) for running apps.
+   - Conduct regular penetration testing and vulnerability assessments.
+   - Automate dependency scanning for known vulnerabilities (SCA).
+
+5. **Identity & Access Management (IAM)**:
+   - Implement Multi-Factor Authentication (MFA).
+   - Use centralized identity providers (IdP/SSO).
+   - Regularly review and rotate access keys and credentials.
+   - Audit access logs and permissions.
+
+6. **Incident Response**:
+   - Define an Incident Response Plan (IRP).
+   - Establish communication channels for security incidents.
+   - Conduct post-mortem analysis of security incidents.
+   - Automate containment and remediation where possible.
+
+7. **Compliance & Governance**:
+   - Ensure compliance with relevant regulations (GDPR, HIPAA, PCI-DSS).
+   - Maintain audit logs for critical actions.
+   - Conduct regular security training for the team.
+   - Manage third-party vendor risk.
+
+<%- folderStructure %>
+
+## Security Checklist
+- [ ] Threat model created/updated
+- [ ] SAST/DAST/SCA scanners active in pipeline
+- [ ] No secrets committed to version control
+- [ ] HTTPS/TLS enforced everywhere
+- [ ] MFA enabled for all critical access
+- [ ] Incident Response Plan is accessible

@@ -44,6 +44,16 @@ export class RulesComposer implements IRulesComposer {
       }
     }
 
+    // Smart Contract Rules
+    if (stack.smartContract && stack.smartContract !== 'none') {
+      const scTemplatePath = `${lang}/fragments/${stack.smartContract}.md.ejs`;
+      try {
+        fragments.push(await this.templateProvider.getTemplate(scTemplatePath));
+      } catch (e) {
+        console.warn(`Missing rule fragment: ${scTemplatePath}`);
+      }
+    }
+
     // Render all fragments
     // Note: We might want to pass data to fragments if needed
     const renderedFragments = fragments.map(f => this.templateProvider.render(f, {}));

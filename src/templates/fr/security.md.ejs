@@ -1,0 +1,55 @@
+---
+description: Workflow Ingénierie Sécurité & Conformité
+---
+
+1. **Modélisation des Menaces (Threat Modeling)** :
+   - Menez des exercices de modélisation des menaces lors des phases de conception (STRIDE, DREAD).
+   - Identifiez les vecteurs d'attaque potentiels et les vulnérabilités.
+   - Documentez les exigences de sécurité et les mesures d'atténuation.
+   - Mettez à jour les modèles de menaces à mesure que l'architecture évolue.
+
+2. **Sécurité Applicative (AppSec)** :
+   - Assurez des pratiques de codage sécurisées (OWASP Top 10).
+   - Implémentez la validation des entrées et l'encodage des sorties pour prévenir les injections.
+   - Appliquez une authentification et une gestion de session robustes.
+   - Utilisez des bibliothèques et des pratiques cryptographiques sécurisées.
+
+3. **Sécurité de l'Infrastructure** :
+   - Durcissez les serveurs et les conteneurs (CIS Benchmarks).
+   - Implémentez la segmentation réseau et les pare-feux (WAF).
+   - Assurez le chiffrement au repos et en transit (TLS/SSL).
+   - Gérez les politiques IAM avec le principe du moindre privilège.
+
+4. **Tests de Sécurité** :
+   - Intégrez le SAST (Static Application Security Testing) dans les pipelines CI.
+   - Intégrez le DAST (Dynamic Application Security Testing) pour les applications en cours d'exécution.
+   - Effectuez régulièrement des tests d'intrusion et des évaluations de vulnérabilité.
+   - Automatisez l'analyse des dépendances pour les vulnérabilités connues (SCA).
+
+5. **Gestion des Identités et des Accès (IAM)** :
+   - Implémentez l'Authentification Multi-Facteurs (MFA).
+   - Utilisez des fournisseurs d'identité centralisés (IdP/SSO).
+   - Revoyez et faites tourner régulièrement les clés d'accès et les identifiants.
+   - Auditez les journaux d'accès et les permissions.
+
+6. **Réponse aux Incidents** :
+   - Définissez un Plan de Réponse aux Incidents (IRP).
+   - Établissez des canaux de communication pour les incidents de sécurité.
+   - Effectuez une analyse post-mortem des incidents de sécurité.
+   - Automatisez le confinement et la remédiation lorsque cela est possible.
+
+7. **Conformité & Gouvernance** :
+   - Assurez la conformité avec les réglementations pertinentes (RGPD, HIPAA, PCI-DSS).
+   - Maintenez des journaux d'audit pour les actions critiques.
+   - Organisez des formations de sécurité régulières pour l'équipe.
+   - Gérez le risque lié aux tiers.
+
+<%- folderStructure %>
+
+## Checklist Sécurité
+- [ ] Modèle de menaces créé/mis à jour
+- [ ] Scanners SAST/DAST/SCA actifs dans le pipeline
+- [ ] Aucun secret commité dans le contrôle de version
+- [ ] HTTPS/TLS appliqué partout
+- [ ] MFA activé pour tous les accès critiques
+- [ ] Plan de Réponse aux Incidents accessible

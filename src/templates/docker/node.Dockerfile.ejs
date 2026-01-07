@@ -1,0 +1,13 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json <%= packageManager === 'npm' ? 'package-lock.json' : (packageManager === 'yarn' ? 'yarn.lock' : 'pnpm-lock.yaml') %> ./
+
+RUN <%= installCommand %>
+
+COPY . .
+
+EXPOSE <%= port %>
+
+CMD [ "<%= startCommand.split(' ')[0] %>", "<%= startCommand.split(' ').slice(1).join('", "') %>" ]

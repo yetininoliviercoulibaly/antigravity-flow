@@ -1,6 +1,6 @@
 import { RulesComposer } from '../../src/core/RulesComposer';
 import { ITemplateProvider, ILocalizationService } from '../../src/core/interfaces';
-import { TechStack, FrontendFramework, BackendFramework, RigorMode } from '../../src/core/types';
+import { TechStack, FrontendFramework, BackendFramework, SmartContractFramework, RigorMode } from '../../src/core/types';
 
 describe('RulesComposer', () => {
   let rulesComposer: RulesComposer;
@@ -72,5 +72,27 @@ describe('RulesComposer', () => {
     expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('prototype'));
     expect(mockTemplateProvider.getTemplate).not.toHaveBeenCalledWith(expect.stringContaining('react'));
     expect(mockTemplateProvider.getTemplate).not.toHaveBeenCalledWith(expect.stringContaining('node'));
+  });
+
+  it('should include smart contract rules if present', async () => {
+    const stack: TechStack = {
+      frontend: FrontendFramework.NONE,
+      backend: BackendFramework.NONE,
+      smartContract: SmartContractFramework.SCRYPTO,
+    };
+    const rigor = RigorMode.STRICT;
+
+    mockTemplateProvider.getTemplate.mockImplementation(async (path) => {
+      if (path.includes('base-rules.md.ejs')) return 'Base';
+      if (path.includes('strict.md.ejs')) return 'Strict';
+      if (path.includes('scrypto.md.ejs')) return 'Scrypto Rules';
+      return '';
+    });
+    mockTemplateProvider.render.mockImplementation((c) => c);
+
+    const result = await rulesComposer.composeRules(stack, rigor);
+
+    expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('scrypto.md.ejs'));
+    expect(result).toContain('Scrypto Rules');
   });
 });

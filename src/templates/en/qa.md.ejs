@@ -3,15 +3,101 @@ description: QA & Testing Workflow
 ---
 
 1. **Test Planning**:
-   - Review requirements/specs.
+   - Review requirements, specs, and acceptance criteria.
    - Identify test cases (nominal, edge cases, error handling).
-2. **Test Implementation**:
-   - Write/Update automated tests (Unit, Integration, E2E).
-   - Use `<%= testCommand %>` to execute them.
-3. **Bug Reporting**:
-   - If a bug is found, document it clearly with reproduction steps.
-   - Create a fix or assign to a Developer.
-4. **Regression**:
-   - Ensure new changes didn't break existing functionality.
-5. **Sign-off**:
-   - Validate the feature is ready for release.
+   - Create test matrices for complex features.
+   - Estimate testing effort and timelines.
+
+2. **Test Data Management**:
+   - Create reusable test fixtures and factories.
+   - Use realistic but anonymized data.
+   - Implement data seeding scripts for consistent test environments.
+   - Clean up test data after each test run.
+
+3. **Unit Testing**:
+   - Test individual functions and classes in isolation.
+   - Mock external dependencies (databases, APIs).
+   - Aim for high coverage on business logic.
+   - Use `<%= testCommand %>` to execute tests.
+
+4. **Integration Testing**:
+   - Test interactions between components.
+   - Use test containers for database tests.
+   - Verify API contracts and data flows.
+   - Test error handling and recovery.
+
+5. **E2E Testing**:
+   - Test complete user journeys.
+   - Use Playwright, Cypress, or similar for browser tests.
+   - Maintain stable selectors and test IDs.
+   - Run E2E tests in CI before deployment.
+
+6. **Mocking Strategies**:
+   - Use MSW (Mock Service Worker) for API mocking.
+   - Use test containers for database integration tests.
+   - Mock time-dependent functions for deterministic tests.
+   - Document mock behavior expectations.
+
+7. **Accessibility Testing (a11y)**:
+   - Verify keyboard navigation.
+   - Check screen reader compatibility.
+   - Validate color contrast ratios.
+   - Use automated tools (axe, WAVE, Lighthouse).
+
+8. **Performance Testing**:
+   - Establish performance baselines.
+   - Test response times under load.
+   - Monitor memory and CPU usage.
+   - Identify and fix N+1 queries.
+
+9. **Security Testing**:
+   - Test authentication and authorization flows.
+   - Verify input validation and sanitization.
+   - Check for OWASP Top 10 vulnerabilities.
+   - Test rate limiting and abuse prevention.
+
+10. **Visual Regression Testing**:
+    - Capture screenshots of UI components.
+    - Compare against baseline images.
+    - Review and approve intentional changes.
+    - Use tools like Percy, Chromatic, or Playwright.
+
+11. **Bug Reporting**:
+    - Document bugs clearly with reproduction steps.
+    - Include environment details and logs.
+    - Assign severity and priority.
+    - Create a fix or assign to a Developer.
+
+12. **Regression Testing**:
+    - Ensure new changes didn't break existing functionality.
+    - Run full test suite before releases.
+    - Prioritize critical path tests.
+
+13. **Sign-off**:
+    - Validate the feature matches requirements.
+    - Confirm all test cases pass.
+    - Update test documentation.
+    - Approve for release.
+
+## Coverage Targets
+| Type | Target |
+|------|--------|
+| Unit Tests | 80%+ |
+| Integration Tests | Critical paths |
+| E2E Tests | Happy paths |
+| a11y | WCAG 2.1 AA |
+
+## Quick Reference Commands
+```bash
+# Run all tests
+<%= testCommand %>
+
+# Run with coverage
+npm run test:cov
+
+# Run E2E tests
+npm run test:e2e
+
+# Run specific test
+npm test -- --grep "test name"
+```

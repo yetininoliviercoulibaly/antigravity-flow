@@ -1,4 +1,21 @@
-import { ArchitectureType, TechStack, RigorMode } from './types';
+import {
+  ArchitectureType,
+  TechStack,
+  RigorMode,
+  VersionControlPlatform,
+  BranchingStrategy,
+  CommitConvention,
+  PackageManager,
+  CoverageTarget,
+  DeploymentPlatform,
+  Containerization,
+  SecurityScanningTool,
+  MonorepoTool,
+  DocumentationStyle,
+  LintingTool,
+  IdeIntegration,
+  WorkflowRole,
+} from './types';
 
 export interface ILogger {
   info(message: string): void;
@@ -20,17 +37,65 @@ export interface ITemplateProvider {
 }
 
 export interface IProjectDetails {
+  // Core paths
   rootPath: string;
   workflowDirectory: string;
   rulesDirectory?: string;
+
+  // Commands
   buildCommand: string;
   testCommand: string;
+  lintCommand?: string;
+  formatCommand?: string;
+
+  // Tech stack
   techStack: TechStack;
   architecture: ArchitectureType;
   rigor: RigorMode;
+
+  // Project info
   projectDescription?: string;
+  projectName?: string;
+  language?: string; // 'en' | 'fr'
+
+  // Monorepo
   isMonorepo?: boolean;
   apps?: string[];
+  monorepoTool?: MonorepoTool;
+
+  // Version control
+  versionControl?: VersionControlPlatform;
+  branchingStrategy?: BranchingStrategy;
+  commitConvention?: CommitConvention;
+
+  // Development tools
+  packageManager?: PackageManager;
+  lintingTools?: LintingTool[];
+  documentationStyle?: DocumentationStyle;
+
+  // Testing
+  coverageTarget?: CoverageTarget;
+
+  // Deployment
+  deploymentPlatform?: DeploymentPlatform;
+  containerization?: Containerization;
+  environments?: string[]; // e.g., ['development', 'staging', 'production']
+
+  // Security
+  securityScanning?: SecurityScanningTool[];
+
+  // IDE Integrations
+  ideIntegrations?: IdeIntegration[];
+
+  // Advanced options (conditional)
+  prApprovalsRequired?: number; // for rigor=strict
+  preCommitHooks?: boolean;
+  blockMergeOnFailingChecks?: boolean;
+  interfacePrefix?: string; // for hexagonal architecture
+  repositoryPattern?: 'repository' | 'dao' | 'active-record';
+
+  // Roles
+  roles?: WorkflowRole[];
 }
 
 export interface ILocalizationService {
@@ -49,4 +114,12 @@ export interface IPipelineGenerator {
 
 export interface IContextGenerator {
   generateContext(project: IProjectDetails): Promise<string>;
+}
+
+export interface IGitignoreGenerator {
+  generate(projectRoot: string, techStack: TechStack): Promise<void>;
+}
+
+export interface IDockerfileGenerator {
+  generate(projectRoot: string, techStack: TechStack): Promise<void>;
 }

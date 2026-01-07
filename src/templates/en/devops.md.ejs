@@ -1,0 +1,54 @@
+---
+description: DevOps & Infrastructure Workflow
+---
+
+1. **Infrastructure as Code (IaC)**:
+   - Define all infrastructure using code (Terraform, Pulumi, CloudFormation).
+   - Version control your infrastructure configurations.
+   - Maintain state files securely (remote state with locking).
+   - Use modular and reusable infrastructure components.
+
+2. **CI/CD Pipelines**:
+   - Ensure fast and reliable build pipelines (<%= buildCommand %>).
+   - Implement automated testing (unit, integration, e2e) in CI (<%= testCommand %>).
+   - Use artifact management for build outputs (Docker images, packages).
+   - Implement staged deployments (Dev -> Staging -> Prod).
+
+3. **Containerization & Orchestration**:
+   - Create optimized and secure Dockerfiles (multi-stage builds).
+   - Manage container orchestration (Kubernetes, Docker Swarm).
+   - Define resource limits and requests.
+   - Ensure proper secrets management (Vault, K8s Secrets).
+
+4. **Observability & Monitoring**:
+   - Set up centralized logging (ELK, Splunk, CloudWatch).
+   - Configure metrics collection (Prometheus, Grafana).
+   - Implement distributed tracing (Jaeger, Zipkin, OpenTelemetry).
+   - Define actionable alerts for critical incidents.
+
+5. **Security & Compliance (DevSecOps)**:
+   - Integrate security scanning in CI/CD (SAST, DAST, dependency check).
+   - Automate compliance checks.
+   - Manage access controls (IAM, RBAC) with least privilege.
+   - Regular patching and updates.
+
+6. **Release Management**:
+   - Define versioning strategy (Semantic Versioning).
+   - Implement deployment strategies (Blue/Green, Canary, Rolling).
+   - Automate rollback procedures.
+   - Maintain release notes and changelogs.
+
+7. **Disaster Recovery & Backup**:
+   - Implement automated backup strategies for databases and state.
+   - Regular testing of restore procedures.
+   - Define high availability and failover configurations.
+
+<%- folderStructure %>
+
+## DevOps Checklist
+- [ ] Infrastructure code is versioned
+- [ ] CI/CD pipeline is active and green
+- [ ] Secrets are managed securely outside of repo
+- [ ] Monitoring dashboards are accessible
+- [ ] Backups are configured and tested
+- [ ] Immutability of deployments is enforced

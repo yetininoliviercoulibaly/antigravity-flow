@@ -102,4 +102,23 @@ describe('WorkflowGenerator', () => {
 
         expect(mockTemplateProvider.getTemplate).not.toHaveBeenCalledWith(expect.stringContaining('fragments/arch/'));
     });
+
+    it('should log error if template generation fails', async () => {
+         mockTemplateProvider.getTemplate.mockRejectedValue(new Error('Template Error'));
+         
+         await workflowGenerator.generateWorkflows(mockProject, [WorkflowRole.DEVELOPER]);
+
+         expect(mockLogger.error).toHaveBeenCalledWith(expect.stringContaining('Failed to generate'));
+    });
+
+    it('should log error if file writing fails', async () => {
+         mockTemplateProvider.getTemplate.mockResolvedValue('content');
+         mockTemplateProvider.render.mockReturnValue('content');
+         mockFileSystem.exists.mockResolvedValue(false);
+         mockFileSystem.writeFile.mockRejectedValue(new Error('Write Error'));
+         
+         await workflowGenerator.generateWorkflows(mockProject, [WorkflowRole.DEVELOPER]);
+
+         expect(mockLogger.error).toHaveBeenCalledWith(expect.stringContaining('Failed to write'));
+    });
 });

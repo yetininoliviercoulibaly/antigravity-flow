@@ -1,6 +1,6 @@
 import { PipelineGenerator } from '../../src/core/PipelineGenerator';
 import { ITemplateProvider, ILogger, IFileSystem, IProjectDetails } from '../../src/core/interfaces';
-import { FrontendFramework, BackendFramework, TechStack, ArchitectureType, RigorMode } from '../../src/core/types';
+import { FrontendFramework, BackendFramework, SmartContractFramework, TechStack, ArchitectureType, RigorMode } from '../../src/core/types';
 import * as path from 'path';
 
 describe('PipelineGenerator', () => {
@@ -75,5 +75,123 @@ describe('PipelineGenerator', () => {
         await pipelineGenerator.generatePipeline(projectDetails);
 
         expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-flutter.yml.ejs'));
+    });
+
+    it('should generate a Scrypto pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.NONE, smartContract: SmartContractFramework.SCRYPTO } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'cargo build',
+            testCommand: 'cargo test',
+        };
+        mockTemplateProvider.getTemplate.mockResolvedValue('Scrypto Content');
+        await pipelineGenerator.generatePipeline(projectDetails);
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-scrypto.yml.ejs'));
+    });
+
+    it('should generate a NestJS pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.NESTJS } as TechStack,
+            architecture: ArchitectureType.HEXAGONAL,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'npm run build',
+            testCommand: 'npm test',
+        };
+
+        const templateContent = 'NestJS Content';
+        mockTemplateProvider.getTemplate.mockResolvedValue(templateContent);
+
+        await pipelineGenerator.generatePipeline(projectDetails);
+
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-nestjs.yml.ejs'));
+    });
+
+    it('should generate a .NET pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.ASPNET_CORE } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'dotnet build',
+            testCommand: 'dotnet test',
+        };
+        mockTemplateProvider.getTemplate.mockResolvedValue('content');
+        await pipelineGenerator.generatePipeline(projectDetails);
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-dotnet.yml.ejs'));
+    });
+
+    it('should generate a Python pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.PYTHON } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'python build',
+            testCommand: 'python test',
+        };
+        mockTemplateProvider.getTemplate.mockResolvedValue('content');
+        await pipelineGenerator.generatePipeline(projectDetails);
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-python.yml.ejs'));
+    });
+
+    it('should generate a Rust pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.RUST } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'cargo build',
+            testCommand: 'cargo test',
+        };
+        mockTemplateProvider.getTemplate.mockResolvedValue('Rust Content');
+        await pipelineGenerator.generatePipeline(projectDetails);
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-rust.yml.ejs'));
+    });
+
+    it('should generate a default Node pipeline workflow', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.NONE, backend: BackendFramework.NODE } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'npm run build',
+            testCommand: 'npm test',
+        };
+        mockTemplateProvider.getTemplate.mockResolvedValue('Node Content');
+        await pipelineGenerator.generatePipeline(projectDetails);
+        expect(mockTemplateProvider.getTemplate).toHaveBeenCalledWith(expect.stringContaining('github-node.yml.ejs'));
+    });
+    
+    it('should log error if generation fails', async () => {
+        const projectDetails: IProjectDetails = {
+            rootPath: '/test/root',
+            workflowDirectory: '.github/workflows',
+            rulesDirectory: '.agent/rules',
+            techStack: { frontend: FrontendFramework.REACT, backend: BackendFramework.NONE } as TechStack,
+            architecture: ArchitectureType.MVC,
+            rigor: RigorMode.STRICT,
+            buildCommand: 'npm run build',
+            testCommand: 'npm run test',
+        };
+        mockTemplateProvider.getTemplate.mockRejectedValue(new Error('Template Fail'));
+        
+        await pipelineGenerator.generatePipeline(projectDetails);
+        
+        expect(mockLogger.error).toHaveBeenCalledWith(expect.stringContaining('Failed to generate pipeline'));
     });
 });

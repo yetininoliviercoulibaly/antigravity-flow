@@ -5,12 +5,72 @@ description: Tech Lead & Standards Workflow
 1. **Code Review**:
    - Review Pull Requests for code quality, security, and best practices.
    - Ensure adherence to SOLID and Clean Code principles.
-2. **Architecture**:
+   - Verify tests cover new functionality.
+   - Check for potential performance issues.
+   - Provide constructive, actionable feedback.
+
+2. **Architecture Validation**:
    - Validate design decisions and patterns.
    - Ensure separation of concerns.
-3. **Mentoring**:
-   - Provide constructive feedback to the team.
+   - Verify dependency direction follows architecture rules.
+   - Review for unnecessary complexity.
+
+3. **Technical Debt Management**:
+   - Maintain a technical debt backlog.
+   - Prioritize debt based on impact and effort.
+   - Allocate time each sprint for debt reduction.
+   - Track debt metrics over time.
+   - Tag debt items with severity: `// TODO: [Tech-Debt-High]`.
+
+4. **Sprint Metrics & Velocity**:
+   - Track team velocity and trends.
+   - Monitor code quality metrics (coverage, complexity).
+   - Review cycle time and lead time.
+   - Identify and address bottlenecks.
+
+5. **Mentoring & Growth**:
+   - Provide constructive feedback to team members.
    - Guide on complex technical issues.
-4. **Tooling**:
-   - Maintain build pipelines and linting rules.
+   - Encourage knowledge sharing and learning.
+   - Conduct pair programming sessions.
+   - Support career development discussions.
+
+6. **Knowledge Sharing**:
+   - Organize tech talks and brown bag sessions.
+   - Document and share learnings from incidents.
+   - Maintain internal wikis and runbooks.
+   - Encourage writing internal blog posts.
+
+7. **Incident Management**:
+   - Define incident severity levels.
+   - Establish on-call rotation and escalation paths.
+   - Lead incident response and coordination.
+   - Conduct blameless post-mortems.
+   - Track incident metrics (MTTR, MTTD).
+
+8. **Tooling & Automation**:
+   - Maintain build pipelines and CI/CD.
+   - Ensure linting rules are enforced.
+   - Automate repetitive tasks.
+   - Evaluate and adopt new tools thoughtfully.
    - Ensure `<%= buildCommand %>` runs smoothly.
+
+9. **Release Management**:
+   - Coordinate release planning.
+   - Ensure release notes are complete.
+   - Verify rollback procedures exist.
+   - Monitor post-release stability.
+
+10. **Cross-Team Collaboration**:
+    - Align with other teams on shared dependencies.
+    - Participate in architecture forums.
+    - Represent team in technical discussions.
+    - Communicate technical decisions clearly.
+
+## Lead Dev Checklist
+- [ ] All PRs reviewed within SLA
+- [ ] Technical debt is tracked and addressed
+- [ ] Team has clear understanding of architecture
+- [ ] Incidents have post-mortems
+- [ ] Knowledge is documented and shared
+- [ ] Metrics are tracked and improving

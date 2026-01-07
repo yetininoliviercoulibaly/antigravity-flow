@@ -1,0 +1,44 @@
+
+  ___       _   _                           _ _               
+ / _ \     | | (_)                         (_) |              
+/ /_\ \_ __| |_ _  __ _ _ __ __ ___   _____| |_ _   _         
+|  _  | '_ \ __| |/ _` | '__/ _` \ \ / / | | __| | | |        
+| | | | | | | |_| | (_| | | | (_| |\ V /| | | | |_| |        
+\_| |_/_| |_|\__|_|\__, |_|  \__,_| \_/ |_|_|  \__, |        
+                    __/ |                       __/ |        
+                   |___/                       |___/         
+
+Welcome to the Antigravity Workflow CLI!
+
+Usage:
+  ag-flow [command]
+
+Commands:
+  init      Initialize the agent workflow in your current directory.
+            - Auto-detects your Tech Stack (Node, Rust, Python, etc.)
+            - Generates specific Agent Rules (.agent/rules/coding-standards.md)
+            - Creates CI/CD Pipelines (.github/workflows/)
+            - Sets up Role-Based Prompts (.agent/workflows/)
+
+  guide     Show this help message.
+
+Workflows Generated:
+  After running 'init', you will find markdown files in '.agent/workflows/'.
+  Copy the content of these files (e.g., 'dev.md') into your AI Agent (Cursor, Windsurf)
+  to prime it with your project's specific context and rules.
+
+Supported Stacks:
+  - Frontend: React, Vue, Angular, Flutter
+  - Backend: NestJS, ASP.NET Core, Python, Node.js, Rust
+  - Smart Contracts: Scrypto
+
+Rigor Modes:
+  - Strict: Enforces TDD, 100% test coverage, and strict typing.
+  - Prototype: Focuses on speed and MVP validation.
+
+Configuration:
+  Your settings are saved in '.agent/antigravity.json'.
+  You can edit this file to manually adjust your project context.
+
+Need more help?
+  Visit: https://github.com/antigravity/flow

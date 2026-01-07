@@ -1,0 +1,54 @@
+---
+description: Workflow DevOps & Infrastructure
+---
+
+1. **Infrastructure as Code (IaC)** :
+   - Définissez toute l'infrastructure sous forme de code (Terraform, Pulumi, CloudFormation).
+   - Versionnez vos configurations d'infrastructure.
+   - Sécurisez les fichiers d'état (remote state avec verrouillage).
+   - Utilisez des composants d'infrastructure modulaires et réutilisables.
+
+2. **Pipelines CI/CD** :
+   - Assurez des pipelines de build rapides et fiables (<%= buildCommand %>).
+   - Implémentez des tests automatisés (unitaires, intégration, e2e) dans la CI (<%= testCommand %>).
+   - Gérez les artefacts de build (images Docker, paquets).
+   - Déployez par étapes (Dev -> Staging -> Prod).
+
+3. **Conteneurisation & Orchestration** :
+   - Créez des Dockerfiles optimisés et sécurisés (builds multi-stage).
+   - Gérez l'orchestration des conteneurs (Kubernetes, Docker Swarm).
+   - Définissez les limites et requêtes de ressources.
+   - Assurez une gestion propre des secrets (Vault, K8s Secrets).
+
+4. **Observabilité & Monitoring** :
+   - Mettez en place une journalisation centralisée (ELK, Splunk, CloudWatch).
+   - Configurez la collecte de métriques (Prometheus, Grafana).
+   - Implémentez le traçage distribué (Jaeger, Zipkin, OpenTelemetry).
+   - Définissez des alertes actionnables pour les incidents critiques.
+
+5. **Sécurité & Conformité (DevSecOps)** :
+   - Intégrez le scan de sécurité dans la CI/CD (SAST, DAST, vérification des dépendances).
+   - Automatisez les contrôles de conformité.
+   - Gérez les contrôles d'accès (IAM, RBAC) avec le principe du moindre privilège.
+   - Patchs et mises à jour régulières.
+
+6. **Gestion des Releases** :
+   - Définissez une stratégie de versioning (Semantic Versioning).
+   - Implémentez des stratégies de déploiement (Blue/Green, Canary, Rolling).
+   - Automatisez les procédures de rollback.
+   - Maintenez des notes de version et des changelogs.
+
+7. **Reprise après Sinistre (DRP) & Sauvegarde** :
+   - Implémentez des stratégies de sauvegarde automatisées pour les bases de données et l'état.
+   - Testez régulièrement les procédures de restauration.
+   - Définissez des configurations de haute disponibilité et de basculement.
+
+<%- folderStructure %>
+
+## Checklist DevOps
+- [ ] Le code d'infrastructure est versionné
+- [ ] Le pipeline CI/CD est actif et vert
+- [ ] Les secrets sont gérés de manière sécurisée hors du repo
+- [ ] Les tableaux de bord de monitoring sont accessibles
+- [ ] Les sauvegardes sont configurées et testées
+- [ ] L'immuabilité des déploiements est appliquée

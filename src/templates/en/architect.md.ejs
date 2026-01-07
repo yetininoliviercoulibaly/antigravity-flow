@@ -3,15 +3,83 @@ description: Architecture & Design Workflow
 ---
 
 1. **System Design**:
-   - Define high-level architecture (Components, Interaction).
+   - Define high-level architecture (Components, Interactions).
    - Select appropriate technologies and patterns.
-2. **Documentation**:
-   - Create/Update Architecture Decision Records (ADRs).
-   - Maintain C4 diagrams or equivalent.
-3. **Standards**:
-   - Define overarching technical standards.
-4. **Feasibility**:
-   - Prototype risky components (PoC).
-   - Verify non-functional requirements (Performance, Security).
+   - Consider scalability, maintainability, and security.
+   - Create C4 diagrams (Context, Container, Component, Code).
+
+2. **Architecture Decision Records (ADRs)**:
+   - Document significant technical decisions.
+   - Include context, options considered, and rationale.
+   - Keep ADRs versioned with the codebase.
+   - Template: `docs/adr/NNNN-title.md`.
+
+3. **API Design**:
+   - Define API versioning strategy (URL, header, content-type).
+   - Design RESTful or GraphQL endpoints consistently.
+   - Document with OpenAPI/Swagger specifications.
+   - Consider backwards compatibility and deprecation policies.
+
+4. **Event-Driven Architecture** (if applicable):
+   - Define event schemas and contracts.
+   - Use event sourcing for audit trails.
+   - Implement idempotent consumers.
+   - Document event flows and subscriptions.
+
+5. **Microservices vs Monolith**:
+   - Evaluate service boundaries based on domain.
+   - Consider team structure and deployment needs.
+   - Start monolithic, extract services when needed.
+   - Document inter-service communication patterns.
+
+6. **Infrastructure as Code (IaC)**:
+   - Review infrastructure architecture decisions.
+   - Ensure IaC modules are reusable and documented.
+   - Define environment-specific configurations.
+   - Plan for disaster recovery and failover.
+
+7. **Observability Stack**:
+   - **Logs**: Structured logging, centralized aggregation.
+   - **Metrics**: Key performance indicators, business metrics.
+   - **Traces**: Distributed tracing for request flows.
+   - **Alerts**: Define SLOs, SLIs, and alerting thresholds.
+
+8. **Performance Architecture**:
+   - Identify potential bottlenecks early.
+   - Design caching strategies (Redis, CDN, in-memory).
+   - Plan for horizontal scaling.
+   - Consider async processing for heavy workloads.
+
+9. **Security Architecture**:
+   - Define authentication and authorization strategy.
+   - Design data encryption at rest and in transit.
+   - Plan network segmentation and access controls.
+   - Include threat modeling in design reviews.
+
+10. **Disaster Recovery**:
+    - Define RPO (Recovery Point Objective) and RTO (Recovery Time Objective).
+    - Document backup and restore procedures.
+    - Plan for multi-region deployment if needed.
+    - Schedule regular DR drills.
+
+11. **Standards & Governance**:
+    - Define overarching technical standards.
+    - Establish code review guidelines.
+    - Create architecture review checkpoints.
+    - Maintain technology radar.
+
+12. **Feasibility & Prototyping**:
+    - Prototype risky components (PoC).
+    - Verify non-functional requirements (Performance, Security).
+    - Document learnings and recommendations.
 
 <%- folderStructure %>
+
+## Architecture Checklist
+- [ ] ADR exists for significant decisions
+- [ ] C4 diagrams are up to date
+- [ ] API contracts are documented
+- [ ] Observability is planned
+- [ ] Security considerations addressed
+- [ ] Scalability strategy defined
+- [ ] DR plan documented

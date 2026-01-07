@@ -1,0 +1,12 @@
+## Django Specific Rules
+
+1.  **Project Structure**: Organize apps by domain/feature, not by type.
+2.  **Models**: Keep models thin, use managers for complex queries.
+3.  **Views**: Prefer class-based views for reusability.
+4.  **Forms**: Use Django forms for validation, ModelForms for CRUD.
+5.  **Migrations**: Always review generated migrations before applying.
+6.  **Signals**: Avoid signals for business logic, use explicit service calls.
+7.  **Templates**: Minimize logic in templates, use template tags.
+8.  **Settings**: Use django-environ or similar for environment configuration.
+9.  **Security**: Enable CSRF, use Django's security middleware.
+10. **Testing**: Use pytest-django for testing, factory_boy for fixtures.

@@ -1,0 +1,6 @@
+### 🛡️ Règles de Refactoring Legacy
+- **Tests de Caractérisation**: Avant de modifier le code, écrivez des tests qui capturent le comportement actuel (y compris les bugs).
+- **Stratégie**: Utilisez le modèle "Etranglement" (Strangler Fig) pour les réécritures majeures. Appliquez la règle du "Boy Scout" (nettoyez ce que vous touchez).
+- **Couverture de Code**: Ne visez pas 100% sur l'ancien code. Concentrez-vous sur le *nouveau* code et le code *modifié*.
+- **Dette Technique**: Marquez les problèmes connus avec `// TODO: [Legacy]`. Ne corrigez pas tout d'un coup.
+- **Types**: Utilisez `any` si nécessaire, mais créez des interfaces pour les frontières du système.

@@ -1,0 +1,11 @@
+### Rust Development Standards
+
+- **Toolchain**: Use `cargo` for dependency management, build, and test.
+- **Formatting**: Enforce `cargo fmt` (rustfmt) for consistent code style.
+- **Linting**: Use `cargo clippy` and address all warnings.
+- **Error Handling**: Use `Result` and `Option` types explicitly. Avoid `unwrap()` and `expect()` in production code; prefer `?` propagation or pattern matching.
+- **Concurrency**: Use `tokio` or `std::thread` appropriately. Ensure thread safety with `Arc`, `Mutex`, `RwLock`.
+- **Testing**:
+    - Unit tests in the same file module `#[cfg(test)] mod tests { ... }`.
+    - Integration tests in `tests/` directory.
+- **Documentation**: Write documentation comments `///` for all public APIs.

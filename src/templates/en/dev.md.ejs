@@ -2,16 +2,76 @@
 description: Standard Development Workflow
 ---
 
-1. **Understanding**: Analyze the user request and relevant files.
-2. **Implementation**:
-   - Create or modify source code.
+1. **Understanding**:
+   - Analyze the user request and relevant files.
+   - Identify impacted modules and dependencies.
+   - Review existing tests and documentation.
+   - Check for related issues or technical debt.
+
+2. **Planning**:
+   - Break down the task into smaller, testable increments.
+   - Propose an implementation plan before coding.
+   - Identify potential risks and edge cases.
+   - Estimate effort and communicate blockers early.
+
+3. **Implementation**:
+   - Create or modify source code following project conventions.
    - Use TDD (write tests before code) if applicable.
-3. **Verification**:
+   - Follow the architecture guidelines (see `.agent/rules/coding-standards.md`).
+   - Keep commits small and focused (one logical change per commit).
+
+4. **Database & Migrations**:
+   - Create migrations for schema changes: `<%= buildCommand.includes('nest') ? 'npm run migration:generate' : 'npx prisma migrate dev' %>`.
+   - Never modify production data directly.
+   - Test migrations on a fresh database.
+
+5. **Environment & Configuration**:
+   - Use environment variables for secrets and config.
+   - Document new environment variables in `.env.example`.
+   - Never commit secrets to version control.
+
+6. **Verification**:
    - Run `<%= buildCommand %>` to check compilation.
    - Run `<%= testCommand %>` for unit tests.
    - Run `npm run lint` or equivalent for style checks.
-4. **Commit**:
-   - If everything is green, propose a commit following the convention: `feat(scope): description`.
-5. **Loop**:
-   - Ask the user if there are other tasks or if the feature is complete.
-   - If complete, propose creating a Pull Request.
+   - Verify no regressions in affected areas.
+
+7. **Logging & Observability**:
+   - Add appropriate log statements (info, warn, error).
+   - Include correlation IDs for traceability.
+   - Avoid logging sensitive data (PII, credentials).
+
+8. **Feature Flags** (if applicable):
+   - Wrap new features in feature flags for safe rollout.
+   - Document flag purpose and cleanup timeline.
+
+9. **Commit & PR**:
+   - Propose a commit following the convention: `feat(scope): description`.
+   - Write a clear PR description with context and testing notes.
+   - Link related issues or tickets.
+   - Request appropriate reviewers.
+
+10. **Rollback Planning**:
+    - Document rollback procedure for complex changes.
+    - Ensure migrations are reversible when possible.
+    - Test rollback in staging environment.
+
+11. **Loop**:
+    - Ask the user if there are other tasks or if the feature is complete.
+    - If complete, propose creating a Pull Request.
+    - Update task tracking and documentation.
+
+## Quick Reference Commands
+```bash
+# Build
+<%= buildCommand %>
+
+# Test
+<%= testCommand %>
+
+# Lint
+npm run lint
+
+# Format
+npm run format
+```

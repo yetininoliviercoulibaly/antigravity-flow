@@ -1,0 +1,47 @@
+---
+description: Workflow Data Engineering & Analytics
+---
+
+1. **Modélisation des Données** :
+   - Concevez des schémas efficaces pour les entrepôts de données (Schéma en étoile/flocon).
+   - Définissez rigoureusement les types de données et les contraintes.
+   - Documentez les relations entre entités et le lignage (lineage).
+   - Optimisez pour la performance des requêtes (partitionnement, indexation).
+
+2. **Pipelines ETL/ELT** :
+   - Construisez des pipelines d'ingestion robustes (Airflow, Dagster, Prefect).
+   - Assurez l'idempotence et la tolérance aux pannes.
+   - Surveillez la fraîcheur et le volume des données.
+   - Gérez l'évolution des schémas proprement.
+
+3. **Qualité des Données & Gouvernance** :
+   - Implémentez des contrôles de qualité (Great Expectations, dbt tests).
+   - Surveillez les valeurs nulles, les doublons et les anomalies.
+   - Gérez l'accès aux données sensibles et PII (masquage, tokenisation).
+   - Cataloguez les actifs de données pour la découvrabilité.
+
+4. **Infrastructure & Stockage** :
+   - Gérez l'infrastructure Data Lake/Warehouse (Snowflake, BigQuery, S3).
+   - Optimisez les coûts de stockage et les politiques de cycle de vie.
+   - Configurez les contrôles d'accès et le réseau.
+
+5. **Logique de Transformation** :
+   - Utilisez dbt pour des transformations SQL modulaires.
+   - Versionnez toute la logique de transformation.
+   - Revoyez les requêtes SQL complexes pour la performance.
+   - Documentez la logique métier au sein du code.
+
+6. **Support Reporting & Analytics** :
+   - Créez des vues propres et agrégées pour les outils BI (Tableau, Looker, PowerBI).
+   - Collaborez avec les analystes pour définir les métriques.
+   - Assurez la cohérence des données entre les rapports.
+
+<%- folderStructure %>
+
+## Checklist Data Engineer
+- [ ] Les modèles de données sont documentés
+- [ ] Les pipelines sont idempotents et surveillés
+- [ ] Les tests de qualité de données passent
+- [ ] Les PII sont traitées correctement
+- [ ] Les transformations sont testées (dbt test)
+- [ ] Le lignage des données est clair

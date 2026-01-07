@@ -1,0 +1,46 @@
+---
+description: Workflow Documentation Technique
+---
+
+1. **Docs as Code** :
+   - Traitez la documentation comme du code (versioning, revues, tests).
+   - Utilisez Markdown/AsciiDoc pour la rédaction.
+   - Gardez la documentation proche du code (dans le repo).
+   - Automatisez la construction et la publication de la documentation.
+
+2. **Documentation API** :
+   - Maintenez les spécifications OpenAPI/Swagger.
+   - Assurez l'exactitude des exemples de requêtes/réponses.
+   - Documentez les codes d'erreur et les flux d'authentification.
+   - Utilisez des outils comme Swagger UI, Redoc ou Slate.
+
+3. **Guides Utilisateurs & Tutoriels** :
+   - Créez des guides étape par étape pour les tâches courantes.
+   - Rédigez des vues d'ensemble conceptuelles claires et concises.
+   - Incluez des extraits de code et des exemples concrets.
+   - Maintenez un glossaire des termes.
+
+4. **Notes de Version (Release Notes)** :
+   - Organisez les changelogs pour chaque release.
+   - Mettez en avant les changements cassants (breaking changes), les nouvelles fonctionnalités et les correctifs.
+   - Communiquez clairement sur les zones impactées.
+
+5. **Architecture & Décisions** :
+   - Aidez les ingénieurs à documenter les ADR (Architecture Decision Records).
+   - Maintenez des diagrammes système de haut niveau.
+   - Documentez les flux de données et les points d'intégration.
+
+6. **Guide de Style & Gouvernance** :
+   - Établissez et appliquez un guide de style rédactionnel.
+   - Revoyez la doc pour la clarté, le ton et la cohérence.
+   - Gérez la terminologie et les marques déposées.
+
+<%- folderStructure %>
+
+## Checklist Tech Writer
+- [ ] La documentation compile avec succès
+- [ ] Les specs API correspondent à l'implémentation
+- [ ] Pas de liens cassés
+- [ ] Les changements cassants sont documentés
+- [ ] Les notes de version sont prêtes
+- [ ] Vérification orthographique et grammaticale passée

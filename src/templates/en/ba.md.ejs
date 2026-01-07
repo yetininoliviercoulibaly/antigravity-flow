@@ -2,14 +2,87 @@
 description: Business Analyst Workflow
 ---
 
-1. **Analysis**:
+1. **Requirements Analysis**:
    - Gather requirements from stakeholders.
    - Analyze business processes and data flows.
-2. **Specification**:
+   - Identify gaps between current and desired state.
+   - Document assumptions and constraints.
+
+2. **Domain-Driven Design (DDD)**:
+   - Define the ubiquitous language with stakeholders.
+   - Identify bounded contexts and their boundaries.
+   - Create domain models and entity relationships.
+   - Document aggregates and invariants.
+
+3. **Event Storming**:
+   - Facilitate event storming workshops.
+   - Identify domain events (orange stickies).
+   - Map commands (blue) and actors (yellow).
+   - Define read models and policies.
+   - Document the resulting event flow.
+
+4. **BPMN Diagrams**:
+   - Create business process diagrams.
+   - Document workflows and decision points.
+   - Identify automation opportunities.
+   - Validate with stakeholders.
+
+5. **Functional Specifications**:
    - Write detailed functional specifications.
+   - Include business rules and validations.
+   - Document data requirements.
+   - Create scenarios and use cases.
+
+6. **Data Dictionary**:
+   - Maintain a glossary of business terms.
+   - Define data entities and attributes.
+   - Document data sources and flows.
+   - Specify data validation rules.
+
+7. **Mockups & Wireframes**:
    - Create mockups or wireframes if needed.
-3. **Collaboration**:
+   - Validate UI flows with stakeholders.
+   - Document interaction patterns.
+   - Collaborate with UX designers.
+
+8. **API Contract Documentation**:
+   - Define API endpoints and payloads.
+   - Specify request/response formats.
+   - Document error codes and meanings.
+   - Coordinate with developers on contracts.
+
+9. **Collaboration**:
    - Bridge the gap between business and technical teams.
-   - Clarify edge cases and rules.
-4. **Validation**:
-   - Verify implemented features match business needs.
+   - Clarify edge cases and business rules.
+   - Translate technical constraints to business impact.
+   - Facilitate communication and alignment.
+
+10. **Validation**:
+    - Verify implemented features match business needs.
+    - Conduct UAT (User Acceptance Testing).
+    - Collect feedback and document adjustments.
+    - Sign off on delivered functionality.
+
+11. **Change Management**:
+    - Document change requests.
+    - Assess impact of proposed changes.
+    - Communicate changes to stakeholders.
+    - Update specifications accordingly.
+
+## DDD Artifacts Checklist
+- [ ] Ubiquitous language documented
+- [ ] Bounded contexts identified
+- [ ] Domain events mapped
+- [ ] Aggregates defined
+- [ ] Entity relationships documented
+- [ ] Business rules captured
+
+## Event Storming Legend
+| Color | Meaning |
+|-------|---------|
+| 🟠 Orange | Domain Event |
+| 🔵 Blue | Command |
+| 🟡 Yellow | Actor/User |
+| 🟣 Purple | Policy/Process |
+| 🟢 Green | Read Model |
+| 🔴 Red | Hot Spot/Problem |

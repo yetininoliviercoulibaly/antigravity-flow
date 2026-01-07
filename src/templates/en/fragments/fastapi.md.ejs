@@ -1,0 +1,11 @@
+## FastAPI Specific Rules
+
+1.  **Pydantic Models**: Use Pydantic for request/response validation and serialization.
+2.  **Dependency Injection**: Use `Depends()` for dependency injection.
+3.  **Async**: Use `async def` for I/O-bound operations.
+4.  **Type Hints**: Always use type hints for parameters and return types.
+5.  **Routers**: Organize endpoints in APIRouter modules by domain.
+6.  **Background Tasks**: Use BackgroundTasks for async operations.
+7.  **Error Handling**: Use HTTPException for API errors with proper status codes.
+8.  **Settings**: Use pydantic-settings for configuration management.
+9.  **Middleware**: Use middleware for CORS, logging, and request tracing.

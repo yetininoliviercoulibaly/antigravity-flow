@@ -1,0 +1,8 @@
+### 🧩 Guidelines Scrypto (RadixDLT)
+- **Orienté Actifs (Asset-Oriented)**: Traitez les ressources (Tokens, NFTs) comme des citoyens de première classe via `Buckets` et `Vaults`. Évitez les simples mappings de balances.
+- **Blueprints & Components**: Gardez les blueprints modulaires. Utilisez des `functions` pour l'instanciation et des `methods` pour la mutation d'état.
+- **Tests**:
+    - Utilisez `TestEnvironment` pour les tests unitaires (rapide, isolé).
+    - Utilisez `LedgerSimulator` pour les tests d'intégration (basés sur les manifestes).
+    - Exécutez via `cargo test`.
+- **Sécurité**: Utilisez des `Badges` pour l'autorisation (Pattern Actor-Virtual-Badge). Validez tous les mouvements de ressources (retraits/dépôts).

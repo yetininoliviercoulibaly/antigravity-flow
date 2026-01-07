@@ -1,8 +1,10 @@
 import * as path from 'path';
 import { IPipelineGenerator, IFileSystem, ITemplateProvider, ILogger, IProjectDetails } from './interfaces';
-import { FrontendFramework, BackendFramework } from './types';
+import { PipelineStrategyFactory } from './pipelines/PipelineStrategy';
 
 export class PipelineGenerator implements IPipelineGenerator {
+  private strategyFactory = new PipelineStrategyFactory();
+  
   constructor(
     private fileSystem: IFileSystem,
     private templateProvider: ITemplateProvider,
@@ -10,24 +12,8 @@ export class PipelineGenerator implements IPipelineGenerator {
   ) {}
 
   async generatePipeline(projectDetails: IProjectDetails): Promise<void> {
-    // Determine which template to use based on stack
-    // Priority: Frontend first (often determines CLI behavior like flutter), then Backend
-    // In a real monorepo scenario we might generate multiple, but for MVP we pick the dominant one.
-    
-    let templateName = 'github-node.yml.ejs'; // default
-
-    if (projectDetails.techStack.frontend === FrontendFramework.FLUTTER) {
-        templateName = 'github-flutter.yml.ejs';
-    } else if (projectDetails.techStack.frontend !== FrontendFramework.NONE) {
-        // Assume JS/TS frontend (React, Vue, etc)
-        templateName = 'github-react.yml.ejs';
-    } else if (projectDetails.techStack.backend === BackendFramework.NESTJS) {
-        templateName = 'github-nestjs.yml.ejs';
-    } else if (projectDetails.techStack.backend === BackendFramework.ASPNET_CORE) {
-        templateName = 'github-dotnet.yml.ejs';
-    } else if (projectDetails.techStack.backend === BackendFramework.PYTHON) {
-        templateName = 'github-python.yml.ejs';
-    }
+    const strategy = this.strategyFactory.getStrategy(projectDetails);
+    const templateName = strategy.getTemplateName();
 
     const templatePath = `en/pipelines/${templateName}`; // Hardcoded to EN for config files? Or use local? Config files usually don't need translation but let's stick to structure.
 
