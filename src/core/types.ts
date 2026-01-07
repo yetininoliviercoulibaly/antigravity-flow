@@ -26,6 +26,7 @@ export enum FrontendFramework {
   REACT = 'react',
   VUE = 'vue',
   ANGULAR = 'angular',
+  FLUTTER = 'flutter',
   NONE = 'none',
 }
 
@@ -33,6 +34,7 @@ export enum BackendFramework {
   NODE = 'node',
   NESTJS = 'nestjs',
   PYTHON = 'python',
+  ASPNET_CORE = 'aspnet-core',
   NONE = 'none',
 }
 
