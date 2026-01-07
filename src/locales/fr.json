@@ -3,6 +3,7 @@
     "welcome": "Bienvenue dans l'initialisation Antigravity Workflow !",
     "intro": "Cet outil va vous aider à générer les workflows agents pour votre projet.\n",
     "language_selection": "Select language / Choisissez votre langue",
+    "project_description": "Description du projet :",
     "build_command": "Quelle est votre commande de build ?",
     "test_command": "Quelle est votre commande de test ?",
     "workflows_selection": "Quels workflows souhaitez-vous générer ?",

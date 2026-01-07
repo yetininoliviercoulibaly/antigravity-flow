@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 import { WorkflowGenerator } from '../core/WorkflowGenerator';
-import { WorkflowRole } from '../core/types';
+import { WorkflowRole, FrontendFramework, BackendFramework, ArchitectureType } from '../core/types';
 import { ILogger, ILocalizationService } from '../core/interfaces';
 
 export class InitCommand {
@@ -33,6 +33,33 @@ export class InitCommand {
 
     // 4. Ask localized questions
     const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'projectDescription',
+        message: this.localizationService.translate('prompts.project_description') || 'Project Description:',
+        default: 'My awesome project',
+      },
+      {
+          type: 'list',
+          name: 'frontend',
+          message: 'Frontend Framework:',
+          choices: Object.values(FrontendFramework),
+          default: FrontendFramework.NONE,
+      },
+      {
+          type: 'list',
+          name: 'backend',
+          message: 'Backend Framework:',
+          choices: Object.values(BackendFramework),
+          default: BackendFramework.NONE,
+      },
+      {
+          type: 'list',
+          name: 'architecture',
+          message: 'Architecture:',
+          choices: Object.values(ArchitectureType),
+          default: ArchitectureType.HEXAGONAL,
+      },
       {
         type: 'input',
         name: 'buildCommand',
@@ -69,18 +96,26 @@ export class InitCommand {
     }
 
     try {
-      await this.workflowGenerator.generateWorkflows(
-        {
-          rootPath: projectRoot,
-          workflowDirectory: '.agent/workflows',
-          rulesDirectory: '.agent/rules',
-          buildCommand: answers.buildCommand,
-          testCommand: answers.testCommand,
+      const projectDetails = {
+        rootPath: projectRoot,
+        workflowDirectory: '.agent/workflows',
+        rulesDirectory: '.agent/rules',
+        buildCommand: answers.buildCommand,
+        testCommand: answers.testCommand,
+        techStack: {
+            frontend: answers.frontend,
+            backend: answers.backend,
         },
-        answers.roles,
-      );
+        architecture: answers.architecture,
+        projectDescription: answers.projectDescription,
+      };
+
+      await this.workflowGenerator.generateWorkflows(projectDetails, answers.roles);
+      await this.workflowGenerator.generateProjectContext(projectDetails);
+
     } catch (error) {
       this.logger.error(this.localizationService.translate('prompts.failed'));
+      console.error(error);
     }
   }
 }

@@ -21,3 +21,28 @@ export const WORKFLOW_FILES = {
 export interface WorkflowConfig {
   crlf?: boolean; // Line ending preference if needed
 }
+
+export enum FrontendFramework {
+  REACT = 'react',
+  VUE = 'vue',
+  ANGULAR = 'angular',
+  NONE = 'none',
+}
+
+export enum BackendFramework {
+  NODE = 'node',
+  NESTJS = 'nestjs',
+  PYTHON = 'python',
+  NONE = 'none',
+}
+
+export enum ArchitectureType {
+  HEXAGONAL = 'hexagonal',
+  MVC = 'mvc',
+  FEATURE_SLICED = 'feature-sliced',
+}
+
+export interface TechStack {
+  frontend: FrontendFramework;
+  backend: BackendFramework;
+}

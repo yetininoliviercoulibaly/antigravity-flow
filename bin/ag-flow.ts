@@ -13,13 +13,26 @@ import {
 const program = new Command();
 
 // Wired Dependencies (Pure DI)
+import { RulesComposer } from '../src/core/RulesComposer';
+import { ContextGenerator } from '../src/core/ContextGenerator';
+
 const logger = new ConsoleLoggerAdapter();
 const fileSystem = new NodeFileSystemAdapter();
-const templatesDir = path.join(__dirname, '../src/templates'); // Pointing to src for dev/compiled structure check needed
+const templatesDir = path.join(__dirname, '../src/templates'); 
 const localesDir = path.join(__dirname, '../src/locales');
 const localizationService = new JsonLocalizationAdapter(localesDir);
 const templateProvider = new EjsTemplateAdapter(templatesDir);
-const workflowGenerator = new WorkflowGenerator(fileSystem, templateProvider, logger, localizationService);
+const rulesComposer = new RulesComposer(templateProvider, localizationService);
+const contextGenerator = new ContextGenerator(templateProvider, localizationService);
+
+const workflowGenerator = new WorkflowGenerator(
+    fileSystem, 
+    templateProvider, 
+    logger, 
+    localizationService,
+    rulesComposer,
+    contextGenerator
+);
 const initCommand = new InitCommand(workflowGenerator, logger, localizationService);
 
 program

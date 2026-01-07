@@ -1,3 +1,5 @@
+import { ArchitectureType, TechStack } from './types';
+
 export interface ILogger {
   info(message: string): void;
   warn(message: string): void;
@@ -23,10 +25,21 @@ export interface IProjectDetails {
   rulesDirectory?: string;
   buildCommand: string;
   testCommand: string;
+  techStack: TechStack;
+  architecture: ArchitectureType;
+  projectDescription?: string;
 }
 
 export interface ILocalizationService {
   setLanguage(lang: string): void;
   getLanguage(): string;
   translate(key: string, args?: Record<string, string>): string;
+}
+
+export interface IRulesComposer {
+  composeRules(stack: TechStack): Promise<string>;
+}
+
+export interface IContextGenerator {
+  generateContext(project: IProjectDetails): Promise<string>;
 }
